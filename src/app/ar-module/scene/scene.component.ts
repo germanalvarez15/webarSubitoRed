@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-scene',
@@ -6,7 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./scene.component.css'],
 })
 export class SceneComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  isActive: boolean = false;
+  ngOnInit(): void {
+    this.isActive = true;
+  }
+
+  goBack() {
+    this.isActive = false;
+
+    this.router.navigate(['']);
+  }
 }

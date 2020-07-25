@@ -1,1 +1,40 @@
-<p>home works!</p>
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img
+        src="/assets/trackingImages/candombe/candombe.png"
+        class="card-img"
+        alt="..."
+      />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Modo Realidad Aumentada</h5>
+        <p class="card-text">
+          Deberá utilizar este marcador para reconocer el contenido
+        </p>
+        <button class="btn btn-primary" (click)="goToARMode()">Entrar</button>
+
+        <p class="card-text"></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="/assets/qrcodes/code1.png" class="card-img" alt="..." />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Modo Escaneo QR</h5>
+        <p class="card-text">
+          Deberá utilizar este marcador para reconocer el contenido
+        </p>
+        <button class="btn btn-primary" (click)="goToQRMode()">Entrar</button>
+
+        <p class="card-text"></p>
+      </div>
+    </div>
+  </div>
+</div>
