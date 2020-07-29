@@ -1,4 +1,10 @@
-<zxing-scanner
-  #scanner
-  (scanSuccess)="scanSuccessHandler($event)"
-></zxing-scanner>
+<div class="wrapper">
+  <img src="/assets/canvas.png" class="frame" />
+
+  <div class="embed-responsive embed-responsive-16by9">
+    <zxing-scanner
+      #scanner
+      (scanSuccess)="scanSuccessHandler($event)"
+    ></zxing-scanner>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+.wrapper {
+  width: 100%;
+}
+.frame {
+  position: absolute;
+  width: inherit;
+  z-index: 1;
+}
