@@ -7,9 +7,10 @@ import { SceneComponent } from './ar-module/scene/scene.component';
 import { HomeComponent } from './webpage/home/home.component';
 import { ScanComponent } from './ar-module/scan/scan.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { FrameComponent } from './webpage/frame/frame.component';
 
 @NgModule({
-  declarations: [AppComponent, SceneComponent, HomeComponent, ScanComponent],
+  declarations: [AppComponent, SceneComponent, HomeComponent, ScanComponent, FrameComponent],
   imports: [BrowserModule, AppRoutingModule, ZXingScannerModule],
   providers: [],
   bootstrap: [AppComponent],

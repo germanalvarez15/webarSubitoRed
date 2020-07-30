@@ -6,3 +6,107 @@
   width: inherit;
   z-index: 1;
 }
+.sofia {
+  width: 15%;
+}
+.map {
+  width: 100%;
+}
+
+.frameElement {
+  z-index: 2;
+  position: absolute;
+}
+
+@media only screen and (max-width: 628px) {
+  .headerText {
+    font-size: 1em;
+    padding-top: 7%;
+    padding-left: 3%;
+    color: white;
+  }
+  .headerTextWrapper {
+    position: absolute;
+    z-index: 2;
+    margin-left: 14%;
+    height: 19%;
+    width: 56%;
+  }
+}
+@media only screen and (min-width: 628px) and (max-width: 938px) {
+  .headerText {
+    font-size: 1.2em;
+    padding-top: 7%;
+    padding-left: 3%;
+    color: white;
+  }
+  .headerTextWrapper {
+    position: absolute;
+    z-index: 2;
+    margin-left: 14%;
+    height: 19%;
+    width: 56%;
+  }
+}
+@media only screen and (min-width: 800px) and (max-width: 938px) {
+  .headerText {
+    font-size: 1.4em;
+    padding-top: 7%;
+    padding-left: 3%;
+    color: white;
+  }
+  .headerTextWrapper {
+    position: absolute;
+    z-index: 2;
+    margin-left: 14%;
+    height: 19%;
+    width: 56%;
+  }
+}
+
+@media only screen and (min-width: 938px) and (max-width: 1050px) {
+  .headerText {
+    font-size: 1.6em;
+    padding-top: 7%;
+    padding-left: 3%;
+    color: white;
+  }
+  .headerTextWrapper {
+    position: absolute;
+    z-index: 2;
+    margin-left: 14%;
+    height: 19%;
+    width: 56%;
+  }
+}
+
+@media only screen and (min-width: 1050px) and (max-width: 1200px) {
+  .headerText {
+    font-size: 1.9em;
+    padding-top: 7%;
+    padding-left: 3%;
+    color: white;
+  }
+  .headerTextWrapper {
+    position: absolute;
+    z-index: 2;
+    margin-left: 14%;
+    height: 19%;
+    width: 56%;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .headerText {
+    font-size: 2.5em;
+    padding-top: 7%;
+    padding-left: 3%;
+    color: white;
+  }
+  .headerTextWrapper {
+    position: absolute;
+    z-index: 2;
+    margin-left: 14%;
+    height: 19%;
+    width: 56%;
+  }
+}
