@@ -1,23 +1,32 @@
 .wrapper {
   width: 100%;
 }
+
+.mediaContainer {
+  width: 79%;
+  padding-top: 12%;
+  z-index: 4;
+}
+
+.video {
+  padding-top: 12%;
+}
 .frame {
   position: absolute;
   width: inherit;
   z-index: 1;
 }
-.sofia {
-  width: 15%;
-}
-.map {
-  width: 100%;
-}
-
 .frameElement {
   z-index: 2;
   position: absolute;
 }
-
+.sofia {
+  width: 15%;
+}
+.mapIcon {
+  width: 27%;
+  margin-left: 57.3%;
+}
 @media only screen and (max-width: 628px) {
   .headerText {
     font-size: 1em;
@@ -97,7 +106,7 @@
 }
 @media only screen and (min-width: 1200px) {
   .headerText {
-    font-size: 2.5em;
+    font-size: 2.2em;
     padding-top: 7%;
     padding-left: 3%;
     color: white;
