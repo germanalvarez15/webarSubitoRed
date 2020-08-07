@@ -1,0 +1,45 @@
+.wrapper {
+  width: 100%;
+}
+.nav-header {
+  background-color: #358da7;
+  width: 110%;
+  height: 10%;
+}
+.nav-header-buttons {
+  background-color: #121c5d;
+  width: 110%;
+  height: 5%;
+}
+.nav-header-buttons-active {
+  background-color: #c11616;
+}
+.nav-header-buttons-text-active {
+  color: white;
+  font-size: 90%;
+}
+.nav-header-buttons-text {
+  color: white;
+  font-size: 77%;
+}
+.frame {
+  position: absolute;
+  width: inherit;
+  z-index: 1;
+}
+.frameElement {
+  z-index: 2;
+  position: absolute;
+}
+.sofia {
+  width: 15%;
+}
+.mapIcon {
+  width: 27%;
+  margin-left: 57.3%;
+}
+.headerText {
+  font-size: 1em;
+  margin-left: 19%;
+  color: white;
+}

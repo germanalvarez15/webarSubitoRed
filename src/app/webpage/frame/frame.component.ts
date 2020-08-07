@@ -7,9 +7,9 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class FrameComponent implements OnInit {
+  lugarActivo: string = 'estación fluvial';
+
   constructor() {}
 
-  ngOnInit(): void {}
-
-  createShadowRoot() {}
+  ngOnInit() {}
 }

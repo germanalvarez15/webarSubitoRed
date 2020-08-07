@@ -1,28 +1,15 @@
-<div class="wrapper">
-  <!-- UI -->
-  <div class="headerTextWrapper">
-    <p class="headerText frameElement">
-      El diario-guía de <b>Villa Soriano</b>
-    </p>
-  </div>
-  <img src="/assets/img/sofia.png" class="sofia frameElement" />
-  <img src="/assets/img/map.png" class="mapIcon frameElement" />
-
-  <img src="/assets/img/canvas.png" class="frame" />
-
-  <!-- MEDIA -->
-  <div
-    class="embed-responsive embed-responsive-16by9 mediaContainer"
-    style="width: 79%; padding-top: 12%; z-index: 4;"
-  >
-    <zxing-scanner
-      #scanner
-      *ngIf="false"
-      (scanSuccess)="scanSuccessHandler($event)"
-    ></zxing-scanner>
-    <video class="video" width="320" height="240" controls muted>
-      <source src="/assets/videos/test.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-  </div>
+<!-- MEDIA -->
+<div
+  class="embed-responsive embed-responsive-16by9 mediaContainer"
+  style="width: 79%; padding-top: 12%; z-index: 4;"
+>
+  <zxing-scanner
+    #scanner
+    *ngIf="false"
+    (scanSuccess)="scanSuccessHandler($event)"
+  ></zxing-scanner>
+  <video class="video" width="320" height="240" controls muted>
+    <source src="/assets/videos/test.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
 </div>
