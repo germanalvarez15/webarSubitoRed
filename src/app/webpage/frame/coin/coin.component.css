@@ -28,7 +28,7 @@
 .coin__back:after {
   content: "";
   position: absolute;
-  left: -50px;
+  left: -30px;
   bottom: 100%;
   display: block;
   height: 200px;
@@ -39,12 +39,12 @@
 }
 .coin__front {
   background-size: cover;
-  transform: translateZ(10px);
+  transform: translateZ(5px);
 }
 .coin__back {
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/US_One_Cent_Rev.png/440px-US_One_Cent_Rev.png");
   background-size: cover;
-  transform: translateZ(-10px) rotateY(180deg);
+  transform: translateZ(-5px) rotateY(180deg);
 }
 .coin__edge div:nth-child(1) {
   position: absolute;
