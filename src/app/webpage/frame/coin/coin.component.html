@@ -3,11 +3,8 @@
     'coin-play': playing,
     'coin-pause': !playing
   }"
-  (mousedown)="onStartClick()"
-  (mouseover)="onStartClick()"
-  (mouseup)="onEndClick()"
-  (mouseleave)="onEndClick()"
-  (mouseout)="onEndClick()"
+  (touchstart)="onStartClick()"
+  (touchend)="onEndClick()"
 >
   <div class="coin__front" [style.background-image]="iconRoute"></div>
   <div class="coin__shadow"></div>
