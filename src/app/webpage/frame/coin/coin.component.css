@@ -1,15 +1,16 @@
+/* IMAGE */
 .coin-pause {
   position: relative;
-  width: 300px;
-  height: 300px;
-  margin: 50px auto;
+  width: 100px;
+  height: 100px;
+  margin: 10px auto;
   transform-style: preserve-3d;
 }
 .coin-play {
   position: relative;
-  width: 300px;
-  height: 300px;
-  margin: 50px auto;
+  width: 100px;
+  height: 100px;
+  margin: 10px auto;
   transform-style: preserve-3d;
   animation: rotate3d 8s linear infinite;
   transition: all 0.3s;
@@ -17,8 +18,8 @@
 .coin__front,
 .coin__back {
   position: absolute;
-  width: 300px;
-  height: 300px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   overflow: hidden;
   background-color: red;
@@ -27,7 +28,7 @@
 .coin__back:after {
   content: "";
   position: absolute;
-  left: -150px;
+  left: -50px;
   bottom: 100%;
   display: block;
   height: 200px;

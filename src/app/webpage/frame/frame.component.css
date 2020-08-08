@@ -68,3 +68,20 @@ section {
 .multimedia-buttons-text {
   color: white;
 }
+
+/* CARD ITEMS */
+.card-items {
+  width: 30%;
+  padding-right: 0;
+}
+.card-items-body {
+  padding: 0;
+}
+.card-items-body-text {
+  text-align: center;
+  color: red;
+}
+.card-item-card {
+  background-color: transparent;
+  border: none;
+}
