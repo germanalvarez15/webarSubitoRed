@@ -1,0 +1,11 @@
+<div
+  [ngClass]="{
+    'coin-play': playing,
+    'coin-pause': !playing
+  }"
+  (touchstart)="onStartClick()"
+  (touchend)="onEndClick()"
+>
+  <div class="coin__front" [style.background-image]="iconRoute"></div>
+  <div class="coin__shadow"></div>
+</div>
