@@ -45,7 +45,6 @@
 }
 /* SECTIONS */
 section {
-  background-color: #2a9688;
   margin-top: -5%;
 }
 
@@ -54,6 +53,7 @@ section {
   padding: 15% 5% 10% 5%;
 }
 
+/*MULTIMEDIA BUTTONS*/
 .multimedia-buttons {
   float: right;
   height: 35px;
@@ -66,19 +66,11 @@ section {
   color: white;
 }
 
-/* CARD ITEMS */
-.card-items {
-  width: 30%;
-  padding-right: 0;
+/* MAP */
+.map-container {
 }
-.card-items-body {
-  padding: 0;
-}
-.card-items-body-text {
-  text-align: center;
-  color: red;
-}
-.card-item-card {
-  background-color: transparent;
-  border: none;
+.marker-container {
+  position: relative;
+  text-align: left;
+  height: 750px;
 }

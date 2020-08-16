@@ -16,9 +16,9 @@
     <li class="nav-item">
       <a class="nav-link nav-header-buttons-text" href="#">MAPA</a>
     </li>
-    <li class="nav-item nav-header-buttons-active">
+    <li class="nav-item nav-header-buttons-active" *ngIf="enableScanningMode">
       <a class="nav-link nav-header-buttons-text-active" href="#">{{
-        lugarActivo
+        activeZone.name
       }}</a>
     </li>
     <li class="nav-item">
@@ -26,13 +26,16 @@
     </li>
   </ul>
 </nav>
-<video class="media-video" controls muted>
+<video *ngIf="!enableScanningMode" class="media-video" controls muted>
   <source src="/assets/videos/test.mp4" type="video/mp4" />
   Your browser does not support the video tag.
 </video>
 <!-- INFO TEXT AND SCAN BUTTON WITH INFO TEXT-->
 <section>
-  <ul class="list-group list-group-horizontal multimedia-buttons" *ngIf="false">
+  <ul
+    class="list-group list-group-horizontal multimedia-buttons"
+    *ngIf="enableScanningMode"
+  >
     <li class="nav-link list-group-item multimedia-buttons-item">
       <a class="multimedia-buttons-text" href="#">ALBUM</a>
     </li>
@@ -44,119 +47,34 @@
     </li>
   </ul>
   <!-- MAIN TEXT -->
-  <p class="infoText">
-    Bienvenido. Durante este recorrido autoguiado vas a pasear por la historia
-    de Villa Soriano. Será un viaje sin tiempo, que te permitirá pasar de un
-    siglo a otro con tan solo unas cuadras de diferencia. Podrás adentrarte en
-    los recovecos de una de las primeras poblaciones del Uruguay y disfrutar de
-    un atardecer colonial en un muelle renovado. Notarás que se mezclará la
-    historia nacional con la de sus pobladores y que eso lo convertirá en un
-    paseo único. Ejemplo de esto podrá ser la historia de Don Paco: descendiente
-    de uno de los Treinta y Tres Orientales e hijo de un artista plástico cuya
-    casa está repleta de máscaras expresivas y coloridas. Uno de los destinos
-    estará contextualizado en el pasado revolucionario, será el predio donde
-    vivían José Gervasio Artigas e Isabel Sánchez. Comenzarás la historia
-    conociendo a aquel Artigas joven y padre de familia, y llegarás hasta el día
-    de hoy, donde conocerás a la tátaranieta de ambos. Podrás rememorar una
-    costumbre religiosa y conocer hasta el más mínimo detalle de una capilla
-    singular. Escuchar la historia de la vida de los vecinos através de un Timbó
-    solemne, o conocer la personalidad de una artista anticipada para la época.
-    Adentrarte en una cocina antigua, escuchar las leyendas del pueblo,sentir el
-    sonido de las aves, reconstruir el pasado y volver al presente, caminar,
-    investigar,charlar y disfrutar.
-  </p>
+  <div class="infoText" [innerHTML]="description"></div>
 </section>
 <section>
-  <div class="row" style="margin-right: -18px; margin-left: 15px;">
-    <div class="col-sm-6 card-items">
-      <div class="card card-item-card">
-        <div class="card-body card-items-body">
-          <app-coin
-            [iconRoute]="'url(/assets/img/places/fluvial.png)'"
-          ></app-coin>
-          <p class="card-text card-items-body-text">Casa de las mascaras.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 card-items">
-      <div class="card card-item-card">
-        <div class="card-body card-items-body">
-          <app-coin
-            [iconRoute]="'url(/assets/img/places/muelle.png)'"
-          ></app-coin>
-          <p class="card-text card-items-body-text">Casa de las mascaras.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 card-items">
-      <div class="card card-item-card">
-        <div class="card-body card-items-body">
-          <app-coin
-            [iconRoute]="'url(/assets/img/places/capilla.png)'"
-          ></app-coin>
-          <p class="card-text card-items-body-text">Casa de las mascaras.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 card-items">
-      <div class="card card-item-card">
-        <div class="card-body card-items-body">
-          <app-coin
-            [iconRoute]="'url(/assets/img/places/maeso.png)'"
-          ></app-coin>
-          <p class="card-text card-items-body-text">Casa de las mascaras.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 card-items">
-      <div class="card card-item-card">
-        <div class="card-body card-items-body">
-          <app-coin
-            [iconRoute]="'url(/assets/img/places/marfetan.png)'"
-          ></app-coin>
-          <p class="card-text card-items-body-text">Casa de las mascaras.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 card-items">
-      <div class="card card-item-card">
-        <div class="card-body card-items-body">
-          <app-coin
-            [iconRoute]="'url(/assets/img/places/mascaras.png)'"
-          ></app-coin>
-          <p class="card-text card-items-body-text">Casa de las mascaras.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 card-items">
-      <div class="card card-item-card">
-        <div class="card-body card-items-body">
-          <app-coin
-            [iconRoute]="'url(/assets/img/places/galarza.png)'"
-          ></app-coin>
-          <p class="card-text card-items-body-text">Casa de las mascaras.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 card-items">
-      <div class="card card-item-card">
-        <div class="card-body card-items-body">
-          <app-coin
-            [iconRoute]="'url(/assets/img/places/solar.png)'"
-          ></app-coin>
-          <p class="card-text card-items-body-text">Casa de las mascaras.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 card-items">
-      <div class="card card-item-card">
-        <div class="card-body card-items-body">
-          <app-coin
-            [iconRoute]="'url(/assets/img/places/timbo.png)'"
-          ></app-coin>
-          <p class="card-text card-items-body-text">Casa de las mascaras.</p>
-        </div>
-      </div>
+  <div class="row" style="margin-right: -18px; margin-left: 2px;">
+    <ng-container *ngFor="let zone of zones">
+      <app-coin
+        [zone]="zone"
+        [style.display]="zone.id == 10 ? 'none' : 'block'"
+      ></app-coin>
+    </ng-container>
+  </div>
+</section>
+<section
+  style="
+    width: 100%;
+    padding-top: 5%;
+    background-position-x: center;
+    background-position-y: 27px;
+    background-size: cover;
+    background-image: url(/assets/img/map/mapa.png);
+    background-repeat: no-repeat;
+  "
+>
+  <div class="map-container">
+    <div class="marker-container">
+      <ng-container *ngFor="let zone of zones">
+        <app-map-container [zone]="zone"></app-map-container>
+      </ng-container>
     </div>
   </div>
 </section>

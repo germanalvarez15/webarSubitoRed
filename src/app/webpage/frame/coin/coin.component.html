@@ -1,11 +1,20 @@
-<div
-  [ngClass]="{
-    'coin-play': playing,
-    'coin-pause': !playing
-  }"
-  (touchstart)="onStartClick()"
-  (touchend)="onEndClick()"
->
-  <div class="coin__front" [style.background-image]="iconRoute"></div>
-  <div class="coin__shadow"></div>
+<div class="col-sm-6 card-items">
+  <div class="card card-item-card">
+    <div class="card-body card-items-body">
+      <div
+        [ngClass]="{
+          'coin-play': playing,
+          'coin-pause': !playing
+        }"
+        (click)="onChangeState()"
+      >
+        <div
+          class="coin__front"
+          [style.background-image]="zone.coinImage"
+        ></div>
+        <div class="coin__shadow"></div>
+      </div>
+      <p class="card-text card-items-body-text">{{ zone.name }}</p>
+    </div>
+  </div>
 </div>

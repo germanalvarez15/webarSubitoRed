@@ -9,9 +9,10 @@ import { ScanComponent } from './ar-module/scan/scan.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { FrameComponent } from './webpage/frame/frame.component';
 import { CoinComponent } from './webpage/frame/coin/coin.component';
+import { MapContainerComponent } from './webpage/frame/map-container/map-container.component';
 
 @NgModule({
-  declarations: [AppComponent, SceneComponent, HomeComponent, ScanComponent, FrameComponent, CoinComponent],
+  declarations: [AppComponent, SceneComponent, HomeComponent, ScanComponent, FrameComponent, CoinComponent, MapContainerComponent],
   imports: [BrowserModule, AppRoutingModule, ZXingScannerModule],
   providers: [],
   bootstrap: [AppComponent],

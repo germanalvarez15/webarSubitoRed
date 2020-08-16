@@ -1,0 +1,25 @@
+<div
+  [style.top]="zone.topValue + '%'"
+  [style.left]="zone.leftValue + '%'"
+  [style.transform]="
+    'translate(-' + zone.xTranslateValue + '%,-' + zone.yTranslateValue + '%)'
+  "
+  style="position: absolute;"
+>
+  <a (click)="changeStatus()">
+    <img
+      *ngIf="!isActive"
+      src="assets/img/map/redMapPoint.png"
+      class="marker-icon"
+    />
+    <img
+      *ngIf="isActive"
+      class="marker-icon"
+      src="assets/img/map/blueMapPoint.png"
+    />
+
+    <b [style.color]="isActive ? '#1d00b1' : '#c20000'">{{
+      zone.name.toUpperCase()
+    }}</b>
+  </a>
+</div>
