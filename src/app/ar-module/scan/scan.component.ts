@@ -1,5 +1,13 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { ZXingScannerComponent } from '@zxing/ngx-scanner';
+import { PlacesEnum } from 'src/app/places.enum';
 
 @Component({
   selector: 'app-scan',
@@ -9,7 +17,7 @@ import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 export class ScanComponent implements OnInit {
   @ViewChild('scanner', { static: false })
   scanner: ZXingScannerComponent;
-
+  @Output() onScannResult: EventEmitter<PlacesEnum> = new EventEmitter();
   constructor() {}
 
   ngOnInit(): void {}
@@ -18,6 +26,7 @@ export class ScanComponent implements OnInit {
    * Some method.
    */
   scanSuccessHandler(event): void {
+    this.onScannResult.emit(event);
     console.log('RESULTADO: ' + event);
   }
 }

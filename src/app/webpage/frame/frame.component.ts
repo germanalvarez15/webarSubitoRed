@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ZoneModel } from './zone.model';
 import { MapService } from './map-container/map.service';
+import { PlacesEnum } from 'src/app/places.enum';
 
 @Component({
   selector: 'app-frame',
@@ -9,7 +10,19 @@ import { MapService } from './map-container/map.service';
 })
 export class FrameComponent implements OnInit {
   enableScanningMode: boolean = false;
+  enableScanner: boolean = false;
+  successScan: boolean = false;
+  scannerTexts: string[] = [
+    'PRESIONA EL BOTON PARA ABRIR LA CÁMARA DEL CELULAR Y EN FOCA A LOS MARCADORES QUE ENCONTRARÁS EN LOS LUGARES PARA VER LOS CONTENIDOS',
+    'ESCANEA EL CODIGO PARA DESCUBRIR MAS CONTENIDO',
+  ];
+  scannerActiveText: string = this.scannerTexts[0];
 
+  videoURLs: any = {
+    intro: '/assets/videos/test.mp4',
+    9: '/assets/videos/timbo.mp4',
+  };
+  activeVideoURL: string = this.videoURLs.intro;
   description: string =
     'Bienvenido. Durante este recorrido auto guiado vas a pasear por la historia de Villa Soriano. Será un viaje sin tiempo, que te permitirá pasar de un siglo a otro con tan solo unas cuadras de diferencia. \n Podrás adentrarte en los recovecos de una de las primeras poblaciones del Uruguayy disfrutar de un atardecer colonial en un muelle renovado. \n Notarás que se mezclará la historia nacional con la de sus pobladores y que eso lo convertirá en un paseo único. Ejemplo de esto podrá ser la historia de Don Paco: descendiente de uno de los Treinta y Tres Orientales e hijo de un artista plástico cuya casa está repleta de máscaras expresivas y coloridas. \n Uno de los destinos estará contextualizado en el pasado revolucionario, será el predio donde vivían José Gervasio Artigas e Isabel Sánchez. Comenzarás la historia conociendo a aquel Artigas joven y padre de familia, y llegarás hasta el día de hoy, donde conocerás a la tátara nieta de ambos. \n Podrás rememorar una costumbre religiosa y conocer hasta el más mínimo detalle de una capilla singular. Escuchar la historia de la vida de los vecinos a través de un Timbó solemne, o conocer la personalidad de una artista anticipada para la época. Adentrarte en una cocina antigua, escuchar las leyendas del pueblo, sentir el sonido de las aves, reconstruir el pasado y volver al presente, caminar, investigar, charlar y disfrutar.';
   activeZone: ZoneModel;
@@ -99,7 +112,8 @@ export class FrameComponent implements OnInit {
     this.addSpacesOnNewDescription(this.description);
 
     this.mapService.onZoneSelected.subscribe((zone: ZoneModel) => {
-      this.enableScanningMode = true;
+      window.scrollTo(0, 0);
+      this.enableScanningMode = !this.enableScanningMode;
       this.activeZone = zone;
       this.addSpacesOnNewDescription(zone.description);
     });
@@ -108,5 +122,22 @@ export class FrameComponent implements OnInit {
   addSpacesOnNewDescription(newDescription: string) {
     let descriptionSplitter: string[] = newDescription.split('\n');
     this.description = descriptionSplitter.join('<br></br>');
+  }
+
+  enableScan() {
+    this.enableScanner = true;
+    this.scannerActiveText = this.scannerTexts[1];
+  }
+  disableScan() {
+    this.enableScanner = false;
+    this.scannerActiveText = this.scannerTexts[0];
+  }
+
+  scanResult(placeScaned: PlacesEnum) {
+    this.successScan = true;
+    this.activeVideoURL = this.videoURLs[placeScaned];
+    this.enableScanner = false;
+    this.enableScanningMode = false;
+    console.log(placeScaned);
   }
 }

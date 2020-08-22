@@ -8,7 +8,8 @@ import { FrameComponent } from './webpage/frame/frame.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'ar', component: SceneComponent },
-  { path: 'scan', component: FrameComponent },
+  { path: 'home', component: FrameComponent },
+  { path: 'scan', component: ScanComponent },
 ];
 
 @NgModule({
