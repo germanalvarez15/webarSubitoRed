@@ -4,12 +4,13 @@ import { SceneComponent } from './ar-module/scene/scene.component';
 import { HomeComponent } from './webpage/home/home.component';
 import { ScanComponent } from './ar-module/scan/scan.component';
 import { FrameComponent } from './webpage/frame/frame.component';
+import { environment } from 'src/environments/environment';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'ar', component: SceneComponent },
-  { path: 'home', component: FrameComponent },
-  { path: 'scan', component: ScanComponent },
+  { path: environment.routes.scan, component: SceneComponent },
+  { path: environment.routes.home, component: FrameComponent },
+  { path: environment.routes.home + '/:place', component: FrameComponent },
 ];
 
 @NgModule({

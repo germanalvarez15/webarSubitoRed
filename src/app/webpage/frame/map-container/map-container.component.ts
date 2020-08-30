@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { MapService } from './map.service';
 import { ZoneModel } from '../zone.model';
+import { OrientationService } from 'src/app/orientation.service';
 
 @Component({
   selector: 'app-map-container',
@@ -9,9 +10,13 @@ import { ZoneModel } from '../zone.model';
 })
 export class MapContainerComponent implements OnInit {
   @Input() zone: ZoneModel;
+  onLandscape: boolean = false;
 
   isActive: boolean;
-  constructor(private mapService: MapService) {}
+  constructor(
+    private mapService: MapService,
+    private orientationService: OrientationService
+  ) {}
 
   ngOnInit(): void {
     this.mapService.onZoneSelected.subscribe((zone: ZoneModel) => {
@@ -21,9 +26,23 @@ export class MapContainerComponent implements OnInit {
         this.isActive = false;
       }
     });
+
+    this.orientationService.onOrientation.subscribe((orientation: string) => {
+      console.log('ORIENTACION: ' + orientation);
+      if (orientation == 'landscape') {
+        this.onLandscape = true;
+      } else {
+        this.onLandscape = false;
+      }
+    });
+    this.onLandscape = this.onLandscapeMode();
   }
 
   changeStatus() {
     this.mapService.onNewZoneSelected(this.zone);
+  }
+  onLandscapeMode() {
+    if (window.outerWidth > window.outerHeight) return true;
+    else return false;
   }
 }

@@ -26,13 +26,7 @@
   z-index: 2;
   position: absolute;
 }
-.sofia {
-  width: 15%;
-}
-.mapIcon {
-  width: 27%;
-  margin-left: 57.3%;
-}
+
 .headerText {
   font-size: 1em;
   margin-left: 19%;
@@ -68,8 +62,17 @@ a:active {
 .multimedia-buttons-text {
   color: white;
 }
-
+/****************** PORTRAIT *************************/
+@media screen and (orientation: portrait) {
+  .sofia {
+    width: 15%;
+  }
+}
 /* MAP */
+.mapIcon {
+  width: 27%;
+  margin-left: 57.3%;
+}
 .map-container {
 }
 .marker-container {
@@ -77,3 +80,24 @@ a:active {
   text-align: left;
   height: 750px;
 }
+
+/****************** LANDSCAPE *************************/
+@media screen and (orientation: landscape) {
+  .sofia {
+    width: 8%;
+    margin-left: 10%;
+  }
+}
+/*
+@media screen and (orientation: landscape) {
+  .orientation-wrapper {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+}
+*/

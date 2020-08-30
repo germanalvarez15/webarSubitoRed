@@ -1,10 +1,28 @@
 <div
-  [style.top]="zone.topValue + '%'"
-  [style.left]="zone.leftValue + '%'"
-  [style.transform]="
-    'translate(-' + zone.xTranslateValue + '%,-' + zone.yTranslateValue + '%)'
+  [style.top]="
+    onLandscape
+      ? zone.landscapeValues.topValue + '%'
+      : zone.portraitValues.topValue + '%'
   "
-  style="position: absolute;"
+  [style.left]="
+    onLandscape
+      ? zone.landscapeValues.leftValue + '%'
+      : zone.portraitValues.leftValue + '%'
+  "
+  [style.transform]="
+    onLandscape
+      ? 'translate(-' +
+        zone.landscapeValues.xTranslateValue +
+        '%,-' +
+        zone.landscapeValues.yTranslateValue +
+        '%)'
+      : 'translate(-' +
+        zone.portraitValues.xTranslateValue +
+        '%,-' +
+        zone.portraitValues.yTranslateValue +
+        '%)'
+  "
+  class="waypoint"
 >
   <a (click)="changeStatus()">
     <img

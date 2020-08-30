@@ -1,7 +1,20 @@
-.marker-icon {
-  width: 13%;
-  float: left;
-}
 .marker-text {
   float: left;
+}
+.waypoint {
+  position: absolute;
+}
+@media screen and (orientation: portrait) {
+  .waypoint {
+  }
+  .marker-icon {
+    width: 13%;
+    float: left;
+  }
+}
+@media screen and (orientation: landscape) {
+  .marker-icon {
+    width: 7%;
+    float: left;
+  }
 }

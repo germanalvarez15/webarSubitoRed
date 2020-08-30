@@ -1,3 +1,6 @@
+import { WaypointValuesPortrait } from './map-container/waypoint-values/waypoint-portrait-values.model';
+import { WaypointValuesLandscape } from './map-container/waypoint-values/waypoint-landscapte-values.model';
+
 export class ZoneModel {
   constructor(
     public id: number,
@@ -5,9 +8,7 @@ export class ZoneModel {
     public description: string,
     public coinImage: string,
     public videoURL: string,
-    public topValue?: number,
-    public leftValue?: number,
-    public yTranslateValue?: number,
-    public xTranslateValue?: number
+    public portraitValues: WaypointValuesPortrait,
+    public landscapeValues: WaypointValuesLandscape
   ) {}
 }

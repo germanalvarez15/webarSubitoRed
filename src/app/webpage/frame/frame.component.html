@@ -1,129 +1,116 @@
-<nav class="navbar navbar-light nav-header">
-  <img
-    class="navbar-brand mb-0 sofia frameElement"
-    src="/assets/img/sofia.png"
-  />
-  <p class="headerText frameElement">El diario-guía de <b>Villa Soriano</b></p>
-</nav>
-<nav class="navbar navbar-expand nav-header-buttons">
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item">
-      <a class="nav-link nav-header-buttons-text" href="#">INICIO</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link nav-header-buttons-text" href="#">LOS LUGARES</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link nav-header-buttons-text" href="#">MAPA</a>
-    </li>
-    <li class="nav-item nav-header-buttons-active" *ngIf="enableScanningMode">
-      <a class="nav-link nav-header-buttons-text-active" href="#">{{
-        activeZone.name
-      }}</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link nav-header-buttons-text" href="#">INFO</a>
-    </li>
-  </ul>
-</nav>
-<video *ngIf="!enableScanningMode" class="media-video" controls muted>
-  <source [src]="activeVideoURL" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
-<app-scan
-  (onScannResult)="scanResult($event)"
-  *ngIf="enableScanningMode && enableScanner"
-></app-scan>
-<!-- INFO TEXT AND SCAN BUTTON WITH INFO TEXT-->
-<section>
-  <ul
-    class="list-group list-group-horizontal multimedia-buttons"
-    *ngIf="enableScanningMode"
-  >
-    <li
-      class="nav-link list-group-item multimedia-buttons-item"
-      *ngIf="!enableScanner"
+<div class="orientation-wrapper">
+  <nav class="navbar navbar-light nav-header">
+    <img
+      class="navbar-brand mb-0 sofia frameElement"
+      src="/assets/img/sofia.png"
+    />
+    <p class="headerText frameElement">
+      El diario-guía de <b>Villa Soriano</b>
+    </p>
+  </nav>
+  <nav class="navbar navbar-expand nav-header-buttons">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link nav-header-buttons-text" href="#">INICIO</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-header-buttons-text" href="#">LOS LUGARES</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-header-buttons-text" href="#">MAPA</a>
+      </li>
+      <li class="nav-item nav-header-buttons-active" *ngIf="enableScanningMode">
+        <a class="nav-link nav-header-buttons-text-active" href="#">{{
+          activeZone.name
+        }}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-header-buttons-text" href="#">INFO</a>
+      </li>
+    </ul>
+  </nav>
+  <video *ngIf="!enableScanningMode" class="media-video" controls muted>
+    <source [src]="activeVideoURL" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <!--
+  <app-scan
+    (onScannResult)="scanResult($event)"
+    *ngIf="enableScanningMode && enableScanner"
+  ></app-scan>
+  -->
+  <!-- INFO TEXT AND SCAN BUTTON WITH INFO TEXT-->
+  <section>
+    <ul
+      class="list-group list-group-horizontal multimedia-buttons"
+      *ngIf="enableScanningMode"
     >
-      <a class="multimedia-buttons-text" href="#">ALBUM</a>
-    </li>
-    <li
-      class="nav-link list-group-item multimedia-buttons-item"
-      *ngIf="!enableScanner"
-    >
-      <a class="multimedia-buttons-text" href="#">360</a>
-    </li>
-    <li
-      class="nav-link list-group-item multimedia-buttons-item"
-      *ngIf="!enableScanner"
-    >
-      <a class="multimedia-buttons-text" href="#">DESCARGAS</a>
-    </li>
-    <li
-      class="nav-link list-group-item multimedia-buttons-item"
-      *ngIf="enableScanner"
-    >
-      <a class="multimedia-buttons-text" (click)="disableScan()">CERRAR</a>
-    </li>
-  </ul>
-  <div style="width: 100%; padding-top: 20%;" *ngIf="enableScanningMode">
-    <div style="padding-left: 20%;">
-      <a
-        style="padding-left: 25%;"
-        (click)="enableScan()"
-        *ngIf="enableScanningMode && !enableScanner"
+      <li
+        class="nav-link list-group-item multimedia-buttons-item"
+        *ngIf="enableScanner"
       >
-        <img style="width: 20%;" src="/assets/img/recordButton.png" />
-      </a>
-      <p
-        style="
-          background-color: red;
-          color: white;
-          text-align: center;
-          width: 69%;
-          font-size: small;
-          margin-top: 5%;
-        "
-      >
-        {{ scannerActiveText }}
-      </p>
+        <a class="multimedia-buttons-text" (click)="disableScan()">CERRAR</a>
+      </li>
+    </ul>
+    <div style="width: 100%; padding-top: 20%" *ngIf="enableScanningMode">
+      <div style="padding-left: 20%">
+        <a
+          style="padding-left: 25%"
+          (click)="enableScan()"
+          *ngIf="enableScanningMode && !enableScanner"
+        >
+          <img style="width: 20%" src="/assets/img/recordButton.png" />
+        </a>
+        <p
+          style="
+            background-color: red;
+            color: white;
+            text-align: center;
+            width: 69%;
+            font-size: small;
+            margin-top: 5%;
+          "
+        >
+          {{ scannerActiveText }}
+        </p>
+      </div>
     </div>
-  </div>
-  <!-- MAIN TEXT -->
-  <div class="infoText" [innerHTML]="description"></div>
-</section>
-<section>
-  <div class="row" style="margin-right: -18px; margin-left: 2px;">
-    <ng-container *ngFor="let zone of zones">
-      <app-coin
-        [zone]="zone"
-        [style.display]="zone.id == 10 ? 'none' : 'block'"
-      ></app-coin>
-    </ng-container>
-  </div>
-</section>
-<section
-  style="
-    width: 100%;
-    padding-top: 5%;
-    background-position-x: center;
-    background-position-y: 27px;
-    background-size: cover;
-    background-image: url(/assets/img/map/mapa.png);
-    background-repeat: no-repeat;
-  "
->
-  <div class="map-container">
-    <div class="marker-container">
+    <!-- MAIN TEXT -->
+    <div class="infoText" [innerHTML]="description"></div>
+  </section>
+  <section>
+    <div class="row" style="margin-right: -18px; margin-left: 2px">
       <ng-container *ngFor="let zone of zones">
-        <app-map-container [zone]="zone"></app-map-container>
+        <app-coin
+          [zone]="zone"
+          [style.display]="zone.id == 10 ? 'none' : 'block'"
+        ></app-coin>
       </ng-container>
     </div>
-  </div>
-</section>
-<div class="wrapper">
-  <!-- UI -->
+  </section>
+  <section
+    style="
+      width: 100%;
+      padding-top: 5%;
+      background-position-x: center;
+      background-position-y: 27px;
+      background-size: cover;
+      background-image: url(/assets/img/map/mapa.png);
+      background-repeat: no-repeat;
+    "
+  >
+    <div class="map-container">
+      <div class="marker-container">
+        <ng-container *ngFor="let zone of zones">
+          <app-map-container [zone]="zone"></app-map-container>
+        </ng-container>
+      </div>
+    </div>
+  </section>
+  <div class="wrapper">
+    <!-- UI -->
 
-  <!--
+    <!--
   <div class="headerTextWrapper">
     <p class="headerText frameElement">
       El diario-guía de <b>Villa Soriano</b>
@@ -134,5 +121,5 @@
 
   <img src="/assets/img/canvas.png" class="frame" />
   <app-scan></app-scan>
-  -->
+  --></div>
 </div>
