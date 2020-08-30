@@ -9,6 +9,7 @@ export class ZoneModel {
     public coinImage: string,
     public videoURL: string,
     public portraitValues: WaypointValuesPortrait,
-    public landscapeValues: WaypointValuesLandscape
+    public landscapeValues: WaypointValuesLandscape,
+    public textAlignRight: boolean
   ) {}
 }

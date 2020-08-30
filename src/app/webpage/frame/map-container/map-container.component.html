@@ -9,19 +9,6 @@
       ? zone.landscapeValues.leftValue + '%'
       : zone.portraitValues.leftValue + '%'
   "
-  [style.transform]="
-    onLandscape
-      ? 'translate(-' +
-        zone.landscapeValues.xTranslateValue +
-        '%,-' +
-        zone.landscapeValues.yTranslateValue +
-        '%)'
-      : 'translate(-' +
-        zone.portraitValues.xTranslateValue +
-        '%,-' +
-        zone.portraitValues.yTranslateValue +
-        '%)'
-  "
   class="waypoint"
 >
   <a (click)="changeStatus()">
@@ -29,15 +16,20 @@
       *ngIf="!isActive"
       src="assets/img/map/redMapPoint.png"
       class="marker-icon"
+      [style.float]="zone.textAlignRight ? '' : 'right'"
     />
     <img
       *ngIf="isActive"
       class="marker-icon"
       src="assets/img/map/blueMapPoint.png"
+      [style.float]="zone.textAlignRight ? '' : 'right'"
     />
 
-    <b [style.color]="isActive ? '#1d00b1' : '#c20000'">{{
-      zone.name.toUpperCase()
-    }}</b>
+    <b
+      class="marker-text"
+      [style.color]="isActive ? '#1d00b1' : '#c20000'"
+      [style.float]="!zone.textAlignRight ? 'right' : 'left'"
+      >{{ zone.name.toUpperCase() }}</b
+    >
   </a>
 </div>
