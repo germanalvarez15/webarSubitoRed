@@ -29,8 +29,8 @@
       </li>
     </ul>
   </nav>
-  <video *ngIf="!enableScanningMode" class="media-video" controls muted>
-    <source [src]="activeVideoURL" type="video/mp4" />
+  <video [src]="activeVideoURL" class="media-video" controls muted>
+    <source type="video/mp4" />
     Your browser does not support the video tag.
   </video>
   <!--
@@ -52,7 +52,9 @@
         <a class="multimedia-buttons-text" (click)="disableScan()">CERRAR</a>
       </li>
     </ul>
-    <div style="width: 100%; padding-top: 20%" *ngIf="enableScanningMode">
+    <!-- MAIN TEXT -->
+    <div class="infoText" [innerHTML]="description"></div>
+    <div style="width: 100%" *ngIf="enableScanningMode">
       <div style="padding-left: 20%">
         <a
           style="padding-left: 25%"
@@ -75,15 +77,13 @@
         </p>
       </div>
     </div>
-    <!-- MAIN TEXT -->
-    <div class="infoText" [innerHTML]="description"></div>
   </section>
   <section>
     <div class="row" style="margin-right: -18px; margin-left: 2px">
       <ng-container *ngFor="let zone of zones">
         <app-coin
           [zone]="zone"
-          [style.display]="zone.id == 10 ? 'none' : 'block'"
+          [style.display]="zone.id == 1 ? 'none' : 'block'"
         ></app-coin>
       </ng-container>
     </div>

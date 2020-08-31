@@ -32,7 +32,6 @@ export class CoinComponent implements OnInit {
     this.playing = false;
   }
   onChangeState() {
-    this.playing = !this.playing;
     this.mapService.onNewZoneSelected(this.zone);
   }
 }
