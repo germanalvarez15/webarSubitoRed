@@ -1,7 +1,6 @@
 import { Component, ViewEncapsulation, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { OrientationService } from './orientation.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { WaypointValuesPortrait } from './map-container/waypoint-values/waypoint-portrait-values.model';
 import { WaypointValuesLandscape } from './map-container/waypoint-values/waypoint-landscapte-values.model';
+import { tns } from 'node_modules/tiny-slider/src/tiny-slider';
 
 @Component({
   selector: 'app-frame',
@@ -81,6 +82,7 @@ export class FrameComponent implements OnInit {
       },
       new WaypointValuesPortrait(9, 66, 30, 62),
       new WaypointValuesPortrait(7, 58, 37, 58),
+      true,
       true
     ),
     new ZoneModel(
@@ -94,6 +96,7 @@ export class FrameComponent implements OnInit {
       },
       new WaypointValuesPortrait(6, 69, 30, 62),
       new WaypointValuesPortrait(3, 59, 37, 58),
+      true,
       true
     ),
     new ZoneModel(
@@ -107,7 +110,8 @@ export class FrameComponent implements OnInit {
       },
       new WaypointValuesPortrait(20.5, 19, 30, 62),
       new WaypointValuesPortrait(19, 15, 37, 58),
-      false
+      false,
+      true
     ),
     new ZoneModel(
       PlacesEnum.MAESO,
@@ -120,6 +124,7 @@ export class FrameComponent implements OnInit {
       },
       new WaypointValuesPortrait(19, 62, 30, 62),
       new WaypointValuesPortrait(18, 57, 37, 58),
+      true,
       true
     ),
     new ZoneModel(
@@ -133,6 +138,7 @@ export class FrameComponent implements OnInit {
       },
       new WaypointValuesPortrait(25.5, 56, 30, 62),
       new WaypointValuesPortrait(24, 53, 37, 58),
+      true,
       true
     ),
     new ZoneModel(
@@ -146,7 +152,8 @@ export class FrameComponent implements OnInit {
       },
       new WaypointValuesPortrait(23, 13, 37, 60),
       new WaypointValuesPortrait(22, 12, 37, 58),
-      false
+      false,
+      true
     ),
     new ZoneModel(
       PlacesEnum.GALARZA,
@@ -155,10 +162,10 @@ export class FrameComponent implements OnInit {
       'url(/assets/img/places/galarza.png)',
       {
         intro: '/assets/videos/' + PlacesEnum.GALARZA + '/' + 'intro.mp4',
-        1: '/assets/videos/' + PlacesEnum.GALARZA + '/' + '1.mp4',
       },
       new WaypointValuesPortrait(36.5, 0, 37, 60),
       new WaypointValuesPortrait(36, 6, 37, 58),
+      false,
       false
     ),
     new ZoneModel(
@@ -172,6 +179,7 @@ export class FrameComponent implements OnInit {
       },
       new WaypointValuesPortrait(29, 61, 30, 62),
       new WaypointValuesPortrait(28, 56, 37, 58),
+      true,
       true
     ),
     new ZoneModel(
@@ -185,6 +193,7 @@ export class FrameComponent implements OnInit {
       },
       new WaypointValuesPortrait(60, 25, 60, 49),
       new WaypointValuesLandscape(60, 36.5, 60, 12),
+      true,
       true
     ),
     new ZoneModel(
@@ -195,15 +204,14 @@ export class FrameComponent implements OnInit {
       '/assets/videos/' + PlacesEnum.BIENVENIDO + '/intro.mp4',
       new WaypointValuesPortrait(79, 29, 79, 50),
       new WaypointValuesLandscape(82, 39, 79, 63),
-      true
+      true,
+      false
     ),
   ];
   constructor(private mapService: MapService, private router: Router) {}
 
   ngOnInit() {
     this.activeVideoURL = this.videoURLs[PlacesEnum.BIENVENIDO];
-    console.log(this.activeVideoURL);
-    console.log(this.videoURLs[PlacesEnum.BIENVENIDO]);
     this.addSpacesOnNewDescription(this.description);
 
     this.mapService.onZoneSelected.subscribe((zone: ZoneModel) => {
@@ -219,6 +227,48 @@ export class FrameComponent implements OnInit {
         this.activeZone = zone;
         this.addSpacesOnNewDescription(zone.description);
       }
+    });
+
+    tns({
+      container: '.my-slider',
+      items: 4,
+      loop: true,
+      autoplay: true,
+      speed: 50,
+      controls: false,
+      autoplayTimeout: 2500,
+      autoplayButtonOutput: false,
+      nav: false,
+      responsive: {
+        320: {
+          edgePadding: 5,
+          gutter: 20,
+          items: 2,
+        },
+        375: {
+          edgePadding: 5,
+          gutter: 20,
+          items: 2,
+        },
+        414: {
+          edgePadding: 5,
+          gutter: 20,
+          items: 2,
+        },
+        736: {
+          edgePadding: 10,
+          items: 2,
+        },
+
+        900: {
+          edgePadding: 9,
+          items: 3,
+        },
+        1200: {
+          edgePadding: 10,
+          items: 4,
+        },
+      },
     });
   }
 

@@ -12,7 +12,15 @@ import { CoinComponent } from './webpage/frame/coin/coin.component';
 import { MapContainerComponent } from './webpage/frame/map-container/map-container.component';
 
 @NgModule({
-  declarations: [AppComponent, SceneComponent, HomeComponent, ScanComponent, FrameComponent, CoinComponent, MapContainerComponent],
+  declarations: [
+    AppComponent,
+    SceneComponent,
+    HomeComponent,
+    ScanComponent,
+    FrameComponent,
+    CoinComponent,
+    MapContainerComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule, ZXingScannerModule],
   providers: [],
   bootstrap: [AppComponent],

@@ -81,6 +81,9 @@ a:active {
   height: 750px;
 }
 
+.legal-a-buttons {
+  margin-left: 10%;
+}
 /****************** LANDSCAPE *************************/
 @media screen and (orientation: landscape) {
   .sofia {

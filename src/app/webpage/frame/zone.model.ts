@@ -10,6 +10,7 @@ export class ZoneModel {
     public videoURL: any,
     public portraitValues: WaypointValuesPortrait,
     public landscapeValues: WaypointValuesLandscape,
-    public textAlignRight: boolean
+    public textAlignRight: boolean,
+    public hasScannMode: boolean
   ) {}
 }
