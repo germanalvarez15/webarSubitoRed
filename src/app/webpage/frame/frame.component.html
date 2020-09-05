@@ -19,10 +19,16 @@
       <li class="nav-item">
         <a class="nav-link nav-header-buttons-text" href="#">MAPA</a>
       </li>
-      <li class="nav-item nav-header-buttons-active" *ngIf="enableScanningMode">
-        <a class="nav-link nav-header-buttons-text-active" href="#">{{
-          activeZone.name
-        }}</a>
+      <li
+        class="nav-item nav-header-buttons-active"
+        *ngIf="enableScanningMode || hasZoneActive"
+      >
+        <a
+          [style.font-size]="activeZone.name.length > 10 ? '55%' : '90%'"
+          class="nav-link nav-header-buttons-text-active"
+          href="#"
+          >{{ activeZone.name }}</a
+        >
       </li>
       <li class="nav-item">
         <a class="nav-link nav-header-buttons-text" href="#">INFO</a>

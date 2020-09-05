@@ -21,8 +21,8 @@ const aframe = (window as any).AFRAME;
 export class SceneComponent implements OnInit {
   @ViewChild('marker') theMarker: ElementRef;
   onLandscape: boolean = false;
-  placesEnum: any = PlacesEnum;
 
+  placesEnum: any = PlacesEnum;
   constructor(
     private router: Router,
     private orientationService: OrientationService
@@ -37,16 +37,9 @@ export class SceneComponent implements OnInit {
       init: function () {
         this.el.sceneEl.addEventListener('markerFound', (event) => {
           // redirect to custom URL
-
+          console.log(event);
           window.location.href =
-            window.location.origin + '/home/' + event.target.id;
-          /*
-          this.router.navigate([environment.routes.home], {
-            queryParams: {
-              place: event.target.id,
-            },
-          });
-          */
+            window.location.origin + '/home?place=' + event.target.id;
         });
       },
     });

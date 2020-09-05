@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ZoneModel } from './zone.model';
 import { MapService } from './map-container/map.service';
 import { PlacesEnum } from 'src/app/places.enum';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { WaypointValuesPortrait } from './map-container/waypoint-values/waypoint-portrait-values.model';
 import { WaypointValuesLandscape } from './map-container/waypoint-values/waypoint-landscapte-values.model';
@@ -18,6 +18,8 @@ export class FrameComponent implements OnInit {
   enableScanningMode: boolean = false;
   enableScanner: boolean = false;
   successScan: boolean = false;
+  QPloaded: boolean = false;
+  hasZoneActive: boolean = false;
   scannerTexts: string[] = [
     'PRESIONA EL BOTON PARA ABRIR LA CÁMARA DEL CELULAR Y EN FOCA A LOS MARCADORES QUE ENCONTRARÁS EN LOS LUGARES PARA VER LOS CONTENIDOS',
     'ESCANEA EL CODIGO PARA DESCUBRIR MAS CONTENIDO',
@@ -32,8 +34,8 @@ export class FrameComponent implements OnInit {
       1: '/assets/videos/' + PlacesEnum.TIMBO + '/' + '1.mp4',
     },
     [PlacesEnum.CAPILLA]: {
-      intro: '/assets/videos/' + PlacesEnum.TIMBO + '/' + 'intro.mp4',
-      1: '/assets/videos/' + PlacesEnum.TIMBO + '/' + '1.mp4',
+      intro: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + 'intro.mp4',
+      1: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '1.mp4',
     },
     [PlacesEnum.GALARZA]: {
       intro: '/assets/videos/' + PlacesEnum.GALARZA + '/' + 'intro.mp4',
@@ -208,24 +210,49 @@ export class FrameComponent implements OnInit {
       false
     ),
   ];
-  constructor(private mapService: MapService, private router: Router) {}
+  constructor(
+    private mapService: MapService,
+    private router: Router,
+    private activedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.activeVideoURL = this.videoURLs[PlacesEnum.BIENVENIDO];
     this.addSpacesOnNewDescription(this.description);
 
-    this.mapService.onZoneSelected.subscribe((zone: ZoneModel) => {
-      window.scrollTo(0, 0);
-      if (this.activeZone && zone.id == this.activeZone.id) {
-        this.enableScanningMode = false;
-        this.activeZone = this.zones[this.zones.length - 1]; //On re-click show BIENVENIDO
+    this.activedRoute.queryParams.subscribe((params) => {
+      if (Object.keys(params).length > 0 && params['place']) {
+        this.QPloaded = true;
+        this.hasZoneActive = true;
+        let qpSplitted: string[] = params['place'].split('-');
+        let zoneID: number = +qpSplitted[0];
+        let subZoneID: number = +qpSplitted[1];
+        this.activeZone = this.searchZoneModelById(zoneID);
+        this.activeVideoURL = this.videoURLs[zoneID][subZoneID];
         this.addSpacesOnNewDescription(this.activeZone.description);
-        this.activeVideoURL = this.activeZone.videoURL;
+        setTimeout(() => {
+          this.mapService.onZoneSelected.emit(this.activeZone);
+        }, 300);
       } else {
-        this.enableScanningMode = true;
-        this.activeVideoURL = zone.videoURL.intro;
-        this.activeZone = zone;
-        this.addSpacesOnNewDescription(zone.description);
+        this.QPloaded = false;
+      }
+    });
+
+    this.mapService.onZoneSelected.subscribe((zone: ZoneModel) => {
+      if (!this.QPloaded) {
+        window.scrollTo(0, 0);
+        if (this.activeZone && zone.id == this.activeZone.id) {
+          this.enableScanningMode = false;
+          this.activeZone = this.zones[this.zones.length - 1]; //On re-click show BIENVENIDO
+          this.addSpacesOnNewDescription(this.activeZone.description);
+          this.activeVideoURL = this.activeZone.videoURL;
+        } else {
+          this.enableScanningMode = true;
+          this.hasZoneActive = true;
+          this.activeVideoURL = zone.videoURL.intro;
+          this.activeZone = zone;
+          this.addSpacesOnNewDescription(zone.description);
+        }
       }
     });
 
@@ -292,6 +319,15 @@ export class FrameComponent implements OnInit {
     this.activeVideoURL = this.videoURLs[placeScaned];
     this.enableScanner = false;
     this.enableScanningMode = false;
-    console.log(placeScaned);
+  }
+
+  searchZoneModelById(id: number): ZoneModel {
+    let zoneFound: ZoneModel = this.zones[this.zones.length - 1];
+    this.zones.forEach((zone: ZoneModel) => {
+      if (id == zone.id) {
+        zoneFound = zone;
+      }
+    });
+    return zoneFound;
   }
 }
