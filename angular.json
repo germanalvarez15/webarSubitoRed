@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "webarSubitoRed"
+    }
+  },
+  "defaultProject": "webarSubitoRed",
+  "cli": {
+    "analytics": false
+  }
 }

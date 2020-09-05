@@ -6,7 +6,6 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import { PlacesEnum } from 'src/app/places.enum';
 
 @Component({
@@ -15,8 +14,6 @@ import { PlacesEnum } from 'src/app/places.enum';
   styleUrls: ['./scan.component.css'],
 })
 export class ScanComponent implements OnInit {
-  @ViewChild('scanner', { static: false })
-  scanner: ZXingScannerComponent;
   @Output() onScannResult: EventEmitter<PlacesEnum> = new EventEmitter();
   constructor() {}
 
