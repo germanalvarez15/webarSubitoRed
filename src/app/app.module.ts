@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { SceneComponent } from './ar-module/scene/scene.component';
 import { HomeComponent } from './webpage/home/home.component';
 import { ScanComponent } from './ar-module/scan/scan.component';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { FrameComponent } from './webpage/frame/frame.component';
 import { CoinComponent } from './webpage/frame/coin/coin.component';
 import { MapContainerComponent } from './webpage/frame/map-container/map-container.component';
@@ -21,7 +20,7 @@ import { MapContainerComponent } from './webpage/frame/map-container/map-contain
     CoinComponent,
     MapContainerComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ZXingScannerModule],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
