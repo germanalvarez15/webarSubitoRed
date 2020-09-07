@@ -7,7 +7,7 @@ import { FrameComponent } from './webpage/frame/frame.component';
 import { environment } from 'src/environments/environment';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: FrameComponent },
   { path: environment.routes.scan, component: SceneComponent },
   { path: environment.routes.home, component: FrameComponent },
   { path: environment.routes.home + '/:place', component: FrameComponent },
