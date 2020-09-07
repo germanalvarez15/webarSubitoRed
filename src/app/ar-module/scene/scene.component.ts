@@ -11,6 +11,8 @@ import { from } from 'rxjs';
 import { PlacesEnum } from 'src/app/places.enum';
 import { environment } from 'src/environments/environment';
 import { OrientationService } from 'src/app/orientation.service';
+import { ImageMarkerModel } from 'src/app/image-marker.model';
+import { MapService } from 'src/app/webpage/frame/map-container/map.service';
 const aframe = (window as any).AFRAME;
 
 @Component({
@@ -23,9 +25,11 @@ export class SceneComponent implements OnInit {
   onLandscape: boolean = false;
 
   placesEnum: any = PlacesEnum;
+  markers: ImageMarkerModel[] = [];
   constructor(
     private router: Router,
-    private orientationService: OrientationService
+    private orientationService: OrientationService,
+    private mapService: MapService
   ) {
     if (this.router.url.includes('scan')) {
       this.onLandscape = this.onLandscapeMode();
@@ -51,6 +55,9 @@ export class SceneComponent implements OnInit {
         this.onLandscape = false;
       }
     });
+
+    this.markers = this.mapService.getAllMarkers();
+    console.log(this.markers)
   }
 
   goBack() {

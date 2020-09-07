@@ -9,6 +9,7 @@ import { ScanComponent } from './ar-module/scan/scan.component';
 import { FrameComponent } from './webpage/frame/frame.component';
 import { CoinComponent } from './webpage/frame/coin/coin.component';
 import { MapContainerComponent } from './webpage/frame/map-container/map-container.component';
+import { ImageTargetComponent } from './ar-module/scene/image-target/image-target.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { MapContainerComponent } from './webpage/frame/map-container/map-contain
     FrameComponent,
     CoinComponent,
     MapContainerComponent,
+    ImageTargetComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

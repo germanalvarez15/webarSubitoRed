@@ -16,16 +16,17 @@
       <!-- on 'url' use the path to the Image Descriptors created before. -->
       <!-- the path should end with the name without the extension e.g. if file is 'pinball.fset' the path should end with 'pinball' -->
 
+      <ng-container *ngFor="let marker of markers">
       <!-- CAPILLA -->
       <a-nft
         type="nft"
-        url="assets/trackingImages/Arquitectura/CAPILLA_ARQUITECTURA"
+        url="{{marker.url}}"
         smooth="true"
         smoothCount="10"
         smoothTolerance=".01"
         smoothThreshold="5"
         markerhandler
-        id="{{ placesEnum.CAPILLA }}-1"
+        id="{{ marker.placeID }}-{{marker.subPlaceID}}"
       >
         <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
         <a-entity
@@ -35,42 +36,8 @@
           rotation="-35 25 -35"
         ></a-entity>
       </a-nft>
-      <a-nft
-        type="nft"
-        url="assets/trackingImages/Figuras_Religiosas/CAPILLA_FUGRAS_RELIGIOSAS"
-        smooth="true"
-        smoothCount="10"
-        smoothTolerance=".01"
-        smoothThreshold="5"
-        markerhandler
-        id="{{ placesEnum.CAPILLA }}-2"
-      >
-        <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
-        <a-entity
-          gltf-model="assets/models/Astronaut.gltf"
-          scale="100 100 100"
-          position="0 0 0"
-          rotation="-35 25 -35"
-        ></a-entity>
-      </a-nft>
-      <a-nft
-        type="nft"
-        url="assets/trackingImages/Paso_Del_Tiempo/CAPILLA_PASO_DEL_TIEMPO"
-        smooth="true"
-        smoothCount="10"
-        smoothTolerance=".01"
-        smoothThreshold="5"
-        markerhandler
-        id="{{ placesEnum.CAPILLA }}-3"
-      >
-        <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
-        <a-entity
-          gltf-model="assets/models/Astronaut.gltf"
-          scale="100 100 100"
-          position="0 0 0"
-          rotation="-35 25 -35"
-        ></a-entity>
-      </a-nft>
+
+  </ng-container>
       <!-- static camera that moves according to the device movemenents -->
       <a-entity camera></a-entity>
     </a-scene>
