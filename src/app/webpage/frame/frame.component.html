@@ -35,7 +35,13 @@
       </li>
     </ul>
   </nav>
-  <video [src]="activeVideoURL" class="media-video" controls muted>
+  <video
+    [src]="activeVideoURL"
+    class="media-video"
+    preload="metadata"
+    controls
+    muted
+  >
     <source type="video/mp4" />
     Your browser does not support the video tag.
   </video>

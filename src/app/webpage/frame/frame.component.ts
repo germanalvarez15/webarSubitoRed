@@ -29,23 +29,41 @@ export class FrameComponent implements OnInit {
   videoURLs: any = {
     [PlacesEnum.BIENVENIDO]:
       '/assets/videos/' + PlacesEnum.BIENVENIDO + '/intro.mp4',
-    [PlacesEnum.TIMBO]: {
-      intro: '/assets/videos/' + PlacesEnum.TIMBO + '/' + 'intro.mp4',
-      1: '/assets/videos/' + PlacesEnum.TIMBO + '/' + '1.mp4',
-    },
-    [PlacesEnum.CAPILLA]: {
-      intro: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + 'intro.mp4',
-      1: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '1.mp4',
-    },
-    [PlacesEnum.GALARZA]: {
-      intro: '/assets/videos/' + PlacesEnum.GALARZA + '/' + 'intro.mp4',
-      1: '/assets/videos/' + PlacesEnum.GALARZA + '/' + '1.mp4',
-    },
     [PlacesEnum.ESTACION_FLUVIAL]: {
       intro:
         '/assets/videos/' + PlacesEnum.ESTACION_FLUVIAL + '/' + 'intro.mp4',
       1: '/assets/videos/' + PlacesEnum.ESTACION_FLUVIAL + '/' + '1.mp4',
+      2: '/assets/videos/' + PlacesEnum.ESTACION_FLUVIAL + '/' + '2.mp4',
+      3: '/assets/videos/' + PlacesEnum.ESTACION_FLUVIAL + '/' + '3.mp4',
     },
+    [PlacesEnum.MUELLE]: {
+      intro: '/assets/videos/' + PlacesEnum.MUELLE + '/' + 'intro.mp4',
+      1: '/assets/videos/' + PlacesEnum.MUELLE + '/' + '1.mp4',
+      2: '/assets/videos/' + PlacesEnum.MUELLE + '/' + '2.mp4',
+      3: '/assets/videos/' + PlacesEnum.MUELLE + '/' + '3.mp4',
+    },
+    [PlacesEnum.TIMBO]: {
+      intro: '/assets/videos/' + PlacesEnum.TIMBO + '/' + 'intro.mp4',
+      1: '/assets/videos/' + PlacesEnum.TIMBO + '/' + '1.mp4',
+      2: '/assets/videos/' + PlacesEnum.TIMBO + '/' + '2.mp4',
+    },
+    [PlacesEnum.MASCARAS]: {
+      intro: '/assets/videos/' + PlacesEnum.MASCARAS + '/' + 'intro.mp4',
+      1: '/assets/videos/' + PlacesEnum.MASCARAS + '/' + '1.mp4',
+    },
+    [PlacesEnum.GALARZA]: {
+      intro: '/assets/videos/' + PlacesEnum.GALARZA + '/' + 'intro.mp4',
+    },
+    [PlacesEnum.CAPILLA]: {
+      intro: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + 'intro.mp4',
+      1: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '1.mp4',
+      2: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '2.mp4',
+      3: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '3.mp4',
+      4: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '4.mp4',
+      5: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '5.mp4',
+      6: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '6.mp4',
+    },
+
     [PlacesEnum.MAESO]: {
       intro: '/assets/videos/' + PlacesEnum.MAESO + '/' + 'intro.mp4',
       1: '/assets/videos/' + PlacesEnum.MAESO + '/' + '1.mp4',
@@ -54,17 +72,10 @@ export class FrameComponent implements OnInit {
       intro: '/assets/videos/' + PlacesEnum.MARFETAN + '/' + 'intro.mp4',
       1: '/assets/videos/' + PlacesEnum.MARFETAN + '/' + '1.mp4',
     },
-    [PlacesEnum.MASCARAS]: {
-      intro: '/assets/videos/' + PlacesEnum.MASCARAS + '/' + 'intro.mp4',
-      1: '/assets/videos/' + PlacesEnum.MASCARAS + '/' + '1.mp4',
-    },
+
     [PlacesEnum.SOLAR]: {
       intro: '/assets/videos/' + PlacesEnum.SOLAR + '/' + 'intro.mp4',
       1: '/assets/videos/' + PlacesEnum.SOLAR + '/' + '1.mp4',
-    },
-    [PlacesEnum.MUELLE]: {
-      intro: '/assets/videos/' + PlacesEnum.MUELLE + '/' + 'intro.mp4',
-      1: '/assets/videos/' + PlacesEnum.MUELLE + '/' + '1.mp4',
     },
   };
   activeVideoURL: string = '';
@@ -76,7 +87,7 @@ export class FrameComponent implements OnInit {
     private mapService: MapService,
     private router: Router,
     private activedRoute: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.zones = this.mapService.getZones();
