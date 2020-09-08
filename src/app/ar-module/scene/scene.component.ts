@@ -23,7 +23,7 @@ const aframe = (window as any).AFRAME;
 export class SceneComponent implements OnInit {
   @ViewChild('marker') theMarker: ElementRef;
   onLandscape: boolean = false;
-
+  zonesLoaded: boolean;
   placesEnum: any = PlacesEnum;
   markers: ImageMarkerModel[] = [];
   constructor(
@@ -41,7 +41,6 @@ export class SceneComponent implements OnInit {
       init: function () {
         this.el.sceneEl.addEventListener('markerFound', (event) => {
           // redirect to custom URL
-          console.log(event);
           window.location.href =
             window.location.origin + '/home?place=' + event.target.id;
         });
@@ -56,8 +55,10 @@ export class SceneComponent implements OnInit {
       }
     });
 
+    setTimeout(() => {}, 200);
     this.markers = this.mapService.getAllMarkers();
-    console.log(this.markers)
+
+    console.log(this.markers);
   }
 
   goBack() {

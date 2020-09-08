@@ -10,6 +10,12 @@ export class ImageMarkerModel {
   }
 
   formatURL() {
-    this.url = 'assets/trackingImages/' + this.placeID + "/" + this.subPlaceID;
+    this.url =
+      'assets/trackingImages/' +
+      this.placeID +
+      '/' +
+      this.subPlaceID +
+      '/' +
+      this.subPlaceID;
   }
 }

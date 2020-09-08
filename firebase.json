@@ -1,7 +1,11 @@
 {
   "hosting": {
-    "public": "dist/webarSubitoRed",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "public": "dist/webarSubitored",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
     "rewrites": [
       {
         "source": "**",

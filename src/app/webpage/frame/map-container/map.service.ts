@@ -58,7 +58,7 @@ export class MapService {
         1: '/assets/videos/' + PlacesEnum.TIMBO + '/' + '1.mp4',
       },
       {
-        2: '/assets/trackingImages/' + PlacesEnum.TIMBO + '/' + '2'
+        2: '/assets/trackingImages/' + PlacesEnum.TIMBO + '/' + '2',
       },
       new WaypointValuesPortrait(20.5, 19, 30, 62),
       new WaypointValuesPortrait(19, 15, 37, 58),
@@ -182,9 +182,9 @@ export class MapService {
       new WaypointValuesLandscape(82, 39, 79, 63),
       true,
       false
-    )
+    ),
   ];
-  constructor() { }
+  constructor() {}
 
   onNewZoneSelected(zone: ZoneModel) {
     this.onZoneSelected.emit(zone);
@@ -199,7 +199,7 @@ export class MapService {
       if (zone.id == placeID) {
         return placeID;
       }
-    })
+    });
   }
 
   getMarkerBySubPlaceID(placeID: PlacesEnum, subPlaceID: number) {
@@ -209,7 +209,7 @@ export class MapService {
           return zone.markersURL[subPlaceID];
         }
       }
-    })
+    });
   }
 
   getAllMarkers(): ImageMarkerModel[] {
@@ -218,14 +218,19 @@ export class MapService {
     this.zones.forEach((zone: ZoneModel) => {
       if (Object.keys(zone.markersURL).length > 0) {
         let marker: ImageMarkerModel;
-        Object.keys(zone.markersURL).forEach(keySubZone => {
-          marker = new ImageMarkerModel(zone.id, +keySubZone, zone.markersURL[keySubZone]);
-          markers.push(marker);
-        })
+        Object.keys(zone.markersURL).forEach((keySubZone) => {
+          if (zone.id == 9) {
+            marker = new ImageMarkerModel(
+              zone.id,
+              +keySubZone,
+              zone.markersURL[keySubZone]
+            );
+            markers.push(marker);
+          }
+        });
       }
-    })
+    });
 
     return markers;
   }
-
 }
