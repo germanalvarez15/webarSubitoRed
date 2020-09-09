@@ -65,7 +65,8 @@ a:active {
 /****************** PORTRAIT *************************/
 @media screen and (orientation: portrait) {
   .sofia {
-    width: 15%;
+    height: inherit;
+    width: auto;
   }
 }
 /* MAP */

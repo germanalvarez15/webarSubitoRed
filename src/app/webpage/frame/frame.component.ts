@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { WaypointValuesPortrait } from './map-container/waypoint-values/waypoint-portrait-values.model';
 import { WaypointValuesLandscape } from './map-container/waypoint-values/waypoint-landscapte-values.model';
 import { tns } from 'node_modules/tiny-slider/src/tiny-slider';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-frame',
@@ -24,6 +25,21 @@ export class FrameComponent implements OnInit {
     'PRESIONA EL BOTON PARA ABRIR LA CÁMARA DEL CELULAR Y EN FOCA A LOS MARCADORES QUE ENCONTRARÁS EN LOS LUGARES PARA VER LOS CONTENIDOS',
     'ESCANEA EL CODIGO PARA DESCUBRIR MAS CONTENIDO',
   ];
+
+  //Sofia Icon Route Images
+  sofiaImageRoutes: string[] = [
+    '/assets/img/iconosSofia/1.png',
+    '/assets/img/iconosSofia/2.png',
+    '/assets/img/iconosSofia/3.png',
+    '/assets/img/iconosSofia/4.png',
+    '/assets/img/iconosSofia/5.png',
+    '/assets/img/iconosSofia/6.png',
+  ];
+  textoCursiva: boolean;
+
+  //Selected Sofia Icon
+  selectedSofiaIconRoute: string;
+
   scannerActiveText: string = this.scannerTexts[0];
   zones: ZoneModel[] = [];
   videoURLs: any = {
@@ -55,9 +71,9 @@ export class FrameComponent implements OnInit {
       intro: '/assets/videos/' + PlacesEnum.GALARZA + '/' + 'intro.mp4',
     },
     [PlacesEnum.CAPILLA]: {
-      intro: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + 'intro.mp4',
-      1: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '1.mp4',
-      2: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '2.mp4',
+      intro: 'https://www.youtube.com/embed/-X0NhnqVBN4',
+      1: 'https://www.youtube.com/embed/-X0NhnqVBN4',
+      2: 'https://www.youtube.com/embed/-X0NhnqVBN4',
       3: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '3.mp4',
       4: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '4.mp4',
       5: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '5.mp4',
@@ -78,7 +94,8 @@ export class FrameComponent implements OnInit {
       1: '/assets/videos/' + PlacesEnum.SOLAR + '/' + '1.mp4',
     },
   };
-  activeVideoURL: string = '';
+
+  activeVideoURL: any;
   description: string =
     'Bienvenido. Durante este recorrido auto guiado vas a pasear por la historia de Villa Soriano. Será un viaje sin tiempo, que te permitirá pasar de un siglo a otro con tan solo unas cuadras de diferencia. \n Podrás adentrarte en los recovecos de una de las primeras poblaciones del Uruguayy disfrutar de un atardecer colonial en un muelle renovado. \n Notarás que se mezclará la historia nacional con la de sus pobladores y que eso lo convertirá en un paseo único. Ejemplo de esto podrá ser la historia de Don Paco: descendiente de uno de los Treinta y Tres Orientales e hijo de un artista plástico cuya casa está repleta de máscaras expresivas y coloridas. \n Uno de los destinos estará contextualizado en el pasado revolucionario, será el predio donde vivían José Gervasio Artigas e Isabel Sánchez. Comenzarás la historia conociendo a aquel Artigas joven y padre de familia, y llegarás hasta el día de hoy, donde conocerás a la tátara nieta de ambos. \n Podrás rememorar una costumbre religiosa y conocer hasta el más mínimo detalle de una capilla singular. Escuchar la historia de la vida de los vecinos a través de un Timbó solemne, o conocer la personalidad de una artista anticipada para la época. Adentrarte en una cocina antigua, escuchar las leyendas del pueblo, sentir el sonido de las aves, reconstruir el pasado y volver al presente, caminar, investigar, charlar y disfrutar.';
   activeZone: ZoneModel;
@@ -86,8 +103,18 @@ export class FrameComponent implements OnInit {
   constructor(
     private mapService: MapService,
     private router: Router,
-    private activedRoute: ActivatedRoute
-  ) {}
+    private activedRoute: ActivatedRoute,
+    private _sanitizer: DomSanitizer
+  ) {
+    let randomNumber: number = Math.floor(
+      Math.random() * this.sofiaImageRoutes.length
+    );
+    //Get random sofia image
+    this.selectedSofiaIconRoute = this.sofiaImageRoutes[randomNumber];
+
+    this.textoCursiva =
+      randomNumber == 1 || randomNumber == 3 || randomNumber == 5;
+  }
 
   ngOnInit() {
     this.zones = this.mapService.getZones();
@@ -95,6 +122,7 @@ export class FrameComponent implements OnInit {
     this.addSpacesOnNewDescription(this.description);
 
     this.activedRoute.queryParams.subscribe((params) => {
+      console.log(params);
       if (Object.keys(params).length > 0 && params['place']) {
         this.QPloaded = true;
         this.hasZoneActive = true;
@@ -102,8 +130,11 @@ export class FrameComponent implements OnInit {
         let zoneID: number = +qpSplitted[0];
         let subZoneID: number = +qpSplitted[1];
         this.activeZone = this.searchZoneModelById(zoneID);
-        this.activeVideoURL = this.videoURLs[zoneID][subZoneID];
+
         this.addSpacesOnNewDescription(this.activeZone.description);
+        this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
+          this.videoURLs[zoneID][subZoneID]
+        );
         setTimeout(() => {
           this.mapService.onZoneSelected.emit(this.activeZone);
         }, 300);
@@ -119,17 +150,22 @@ export class FrameComponent implements OnInit {
           this.enableScanningMode = false;
           this.activeZone = this.zones[this.zones.length - 1]; //On re-click show BIENVENIDO
           this.addSpacesOnNewDescription(this.activeZone.description);
-          this.activeVideoURL = this.activeZone.videoURL;
+          this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
+            this.activeZone.videoURL
+          );
         } else {
           this.enableScanningMode = true;
           this.hasZoneActive = true;
-          this.activeVideoURL = zone.videoURL.intro;
           this.activeZone = zone;
           this.addSpacesOnNewDescription(zone.description);
+          this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
+            this.activeZone.videoURL
+          );
         }
       }
     });
 
+    console.log(window.location.hash);
     tns({
       container: '.my-slider',
       items: 4,
@@ -181,6 +217,7 @@ export class FrameComponent implements OnInit {
   enableScan() {
     this.enableScanner = true;
     this.scannerActiveText = this.scannerTexts[1];
+    history.pushState({ foo: 'Home' }, 'Home', this.router.url);
     this.router.navigate([environment.routes.scan]);
   }
   disableScan() {

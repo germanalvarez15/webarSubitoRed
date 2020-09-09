@@ -23,6 +23,7 @@
     "rxjs": "~6.6.0",
     "tiny-slider": "^2.9.3",
     "tslib": "^2.0.0",
+    "webrtc-adapter": "^7.7.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

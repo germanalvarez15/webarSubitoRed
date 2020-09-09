@@ -50,9 +50,9 @@ export class MapService {
     ),
     new ZoneModel(
       PlacesEnum.TIMBO,
-      'Capilla Santo Domingo',
-      'La composición de las esculturas, el sonar de la campana y la teoría de un túnel que comunica dos partes de la ciudad, constituye solo una parte de esta visita. El recorrido por la Capilla Santo Domingo de Soriano, trae consigo su origen en el año 1772 y la sencillez con la que fue creada. Al caminar por su interiorse puede rememorar aquel combate de 1811, en el que la capilla tuvo un rol protagónico y se volvió un símbolo de resistencia.',
-      'url(/assets/img/places/capilla.png)',
+      'Timbó',
+      'El nombre científico con el que se reconoce a este árbol es Enterolobiumcontortisiliquum, pero para los vecinos es El timbó, el árbol que los ha acompañado generación tras generación. Aunque hace unos años, su follaje desapareció por completo, continúa  siendo uno de los íconos más representativos de Villa Soriano.',
+      'url(/assets/img/places/timbo.png)',
       {
         intro: '/assets/videos/' + PlacesEnum.TIMBO + '/' + 'intro.mp4',
         1: '/assets/videos/' + PlacesEnum.TIMBO + '/' + '1.mp4',
@@ -152,12 +152,13 @@ export class MapService {
     ),
     new ZoneModel(
       PlacesEnum.CAPILLA,
-      'Timbó',
-      'El nombre científico con el que se reconoce a este árbol es Enterolobiumcontortisiliquum, pero para los vecinos es El timbó, el árbol que los ha acompañado generación tras generación. Aunque hace unos años, su follaje desapareció por completo, continúa  siendo uno de los íconos más representativos de Villa Soriano.',
-      'url(/assets/img/places/timbo.png)',
+      'Capilla Santo Domingo',
+      'La composición de las esculturas, el sonar de la campana y la teoría de un túnel que comunica dos partes de la ciudad, constituye solo una parte de esta visita. El recorrido por la Capilla Santo Domingo de Soriano, trae consigo su origen en el año 1772 y la sencillez con la que fue creada. Al caminar por su interiorse puede rememorar aquel combate de 1811, en el que la capilla tuvo un rol protagónico y se volvió un símbolo de resistencia.',
+      'url(/assets/img/places/capilla.png)',
       {
-        intro: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + 'intro.mp4',
-        1: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '1.mp4',
+        intro: 'https://www.youtube.com/embed/-X0NhnqVBN4',
+        1: 'https://www.youtube.com/embed/-X0NhnqVBN4',
+        2: 'https://www.youtube.com/embed/-X0NhnqVBN4',
       },
       {
         2: '/assets/trackingImages/' + PlacesEnum.CAPILLA + '/' + '2',

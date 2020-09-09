@@ -14,6 +14,7 @@ import { OrientationService } from 'src/app/orientation.service';
 import { ImageMarkerModel } from 'src/app/image-marker.model';
 import { MapService } from 'src/app/webpage/frame/map-container/map.service';
 const aframe = (window as any).AFRAME;
+import adapter from 'webrtc-adapter';
 
 @Component({
   selector: 'app-scene',
@@ -55,10 +56,11 @@ export class SceneComponent implements OnInit {
       }
     });
 
-    setTimeout(() => {}, 200);
     this.markers = this.mapService.getAllMarkers();
 
-    console.log(this.markers);
+    window.onpopstate = function (event) {
+      window.location.reload();
+    };
   }
 
   goBack() {

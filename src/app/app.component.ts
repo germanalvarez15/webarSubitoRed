@@ -17,8 +17,6 @@ export class AppComponent {
     event
   ) {
     setTimeout(() => {
-      console.log(window.outerWidth);
-      console.log(window.outerHeight);
       if (window.outerWidth > window.outerHeight) {
         this.orientationService.onOrientationChanged('landscape');
       } else {

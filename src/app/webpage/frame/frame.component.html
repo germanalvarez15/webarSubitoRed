@@ -1,11 +1,30 @@
 <div class="orientation-wrapper">
-  <nav class="navbar navbar-light nav-header">
+  <nav
+    class="navbar navbar-expand nav-header"
+    [style.height]="textoCursiva ? '100px' : '65px'"
+  >
     <img
       class="navbar-brand mb-0 sofia frameElement"
-      src="/assets/img/sofia.png"
+      src="{{ selectedSofiaIconRoute }}"
     />
-    <p class="headerText frameElement">
-      El diario-guía de <b>Villa Soriano</b>
+    <p
+      *ngIf="!textoCursiva"
+      class="headerText frameElement"
+      style="margin-top: 4%"
+    >
+      <span> El diario-guía de </span><br /><b>Villa Soriano</b>
+    </p>
+    <p
+      *ngIf="textoCursiva"
+      style="width: max-content"
+      [style.margin-left]="textoCursiva ? '26%' : '19%'"
+      class="headerText frameElement"
+    >
+      <span style="font-size: 16px">Abri el</span><br />
+      <span style="font-family: 'Great Vibes', cursive; font-size: 27px"
+        >Diario de sofia</span
+      ><br />
+      <span style="font-size: 16px">y disfruta de un recorrido autoguiado</span>
     </p>
   </nav>
   <nav class="navbar navbar-expand nav-header-buttons">
@@ -35,6 +54,17 @@
       </li>
     </ul>
   </nav>
+
+  <iframe
+    width="560"
+    height="315"
+    [src]="activeVideoURL"
+    frameborder="0"
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    class="media-video"
+  ></iframe>
+  <!--
   <video
     [src]="activeVideoURL"
     class="media-video"
@@ -45,7 +75,7 @@
     <source type="video/mp4" />
     Your browser does not support the video tag.
   </video>
-  <!--
+
   <app-scan
     (onScannResult)="scanResult($event)"
     *ngIf="enableScanningMode && enableScanner"
