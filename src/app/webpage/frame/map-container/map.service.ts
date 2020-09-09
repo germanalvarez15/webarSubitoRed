@@ -23,6 +23,7 @@ export class MapService {
         3: 'https://www.youtube.com/embed/umx0PpFc06M',
       },
       {
+        1: '/assets/trackingImages/' + PlacesEnum.ESTACION_FLUVIAL + '/' + '1',
         2: '/assets/trackingImages/' + PlacesEnum.ESTACION_FLUVIAL + '/' + '2',
         3: '/assets/trackingImages/' + PlacesEnum.ESTACION_FLUVIAL + '/' + '3',
       },
@@ -43,6 +44,7 @@ export class MapService {
         3: 'https://www.youtube.com/embed/lb8S_x0sCas',
       },
       {
+        1: '/assets/trackingImages/' + PlacesEnum.MUELLE + '/' + '1',
         2: '/assets/trackingImages/' + PlacesEnum.MUELLE + '/' + '2',
         3: '/assets/trackingImages/' + PlacesEnum.MUELLE + '/' + '3',
       },
@@ -62,6 +64,7 @@ export class MapService {
         2: 'https://www.youtube.com/embed/DKvLnCfVu90',
       },
       {
+        1: '/assets/trackingImages/' + PlacesEnum.TIMBO + '/' + '1',
         2: '/assets/trackingImages/' + PlacesEnum.TIMBO + '/' + '2',
       },
       new WaypointValuesPortrait(20.5, 19, 30, 62),
@@ -81,6 +84,7 @@ export class MapService {
         3: 'https://www.youtube.com/embed/H_kmsjE6RR0',
       },
       {
+        1: '/assets/trackingImages/' + PlacesEnum.MAESO + '/' + '1',
         2: '/assets/trackingImages/' + PlacesEnum.MAESO + '/' + '2',
         3: '/assets/trackingImages/' + PlacesEnum.MAESO + '/' + '3',
       },
@@ -102,6 +106,7 @@ export class MapService {
         4: 'https://www.youtube.com/embed/dTF1t8tUBMw',
       },
       {
+        1: '/assets/trackingImages/' + PlacesEnum.MARFETAN + '/' + '1',
         2: '/assets/trackingImages/' + PlacesEnum.MARFETAN + '/' + '2',
         3: '/assets/trackingImages/' + PlacesEnum.MARFETAN + '/' + '3',
         4: '/assets/trackingImages/' + PlacesEnum.MARFETAN + '/' + '4',
@@ -122,7 +127,9 @@ export class MapService {
         intro: 'https://www.youtube.com/embed/jTQnOGdFIuM',
         1: 'https://www.youtube.com/embed/d7P4rSk17Qo',
       },
-      {},
+      {
+        1: '/assets/trackingImages/' + PlacesEnum.MASCARAS + '/' + '1',
+      },
       new WaypointValuesPortrait(23, 13, 37, 60),
       new WaypointValuesPortrait(22, 12, 37, 58),
       false,
@@ -136,7 +143,9 @@ export class MapService {
       {
         intro: 'https://www.youtube.com/embed/99MWuxXqmPI',
       },
-      {},
+      {
+        1: '/assets/trackingImages/' + PlacesEnum.GALARZA + '/' + '1',
+      },
       new WaypointValuesPortrait(36.5, 0, 37, 60),
       new WaypointValuesPortrait(36, 6, 37, 58),
       false,
@@ -153,6 +162,7 @@ export class MapService {
         2: 'https://www.youtube.com/embed/DW84K3L0vG8',
       },
       {
+        1: '/assets/trackingImages/' + PlacesEnum.SOLAR + '/' + '1',
         2: '/assets/trackingImages/' + PlacesEnum.SOLAR + '/' + '2',
       },
       new WaypointValuesPortrait(29, 61, 30, 62),
@@ -175,6 +185,7 @@ export class MapService {
         6: 'https://www.youtube.com/embed/vl8OopBfleo',
       },
       {
+        1: '/assets/trackingImages/' + PlacesEnum.CAPILLA + '/' + '1',
         2: '/assets/trackingImages/' + PlacesEnum.CAPILLA + '/' + '2',
         3: '/assets/trackingImages/' + PlacesEnum.CAPILLA + '/' + '3',
         4: '/assets/trackingImages/' + PlacesEnum.CAPILLA + '/' + '4',
