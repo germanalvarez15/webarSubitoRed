@@ -199,6 +199,8 @@ export class MapService {
       false
     ),
   ];
+
+  zoneTypeSelected: PlacesEnum;
   constructor() {}
 
   onNewZoneSelected(zone: ZoneModel) {
@@ -247,5 +249,12 @@ export class MapService {
     });
 
     return markers;
+  }
+
+  setZoneTypeToScan(typeZone: PlacesEnum) {
+    this.zoneTypeSelected = typeZone;
+  }
+  getZoneTypeToScan(): number {
+    return this.zoneTypeSelected;
   }
 }

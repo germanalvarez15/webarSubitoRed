@@ -27,6 +27,9 @@ export class SceneComponent implements OnInit {
   zonesLoaded: boolean;
   placesEnum: any = PlacesEnum;
   markers: ImageMarkerModel[] = [];
+
+  activeZoneType: PlacesEnum = 0;
+
   constructor(
     private router: Router,
     private orientationService: OrientationService,
@@ -35,18 +38,11 @@ export class SceneComponent implements OnInit {
     if (this.router.url.includes('scan')) {
       this.onLandscape = this.onLandscapeMode();
     }
+    this.activeZoneType = this.mapService.getZoneTypeToScan();
   }
   isActive: boolean = false;
   ngOnInit(): void {
-    aframe.registerComponent('markerhandler', {
-      init: function () {
-        this.el.sceneEl.addEventListener('markerFound', (event) => {
-          // redirect to custom URL
-          window.location.href =
-            window.location.origin + '/home?place=' + event.target.id;
-        });
-      },
-    });
+    this.trackingListeners();
 
     this.orientationService.onOrientation.subscribe((orientation: string) => {
       if (orientation == 'landscape') {
@@ -61,6 +57,137 @@ export class SceneComponent implements OnInit {
     window.onpopstate = function (event) {
       window.location.reload();
     };
+  }
+
+  trackingListeners() {
+    aframe.registerComponent('markerhandler2-2', function () {
+      this.el.sceneEl.addEventListener('markerFound', (event) => {
+        // redirect to custom URL
+        window.location.href =
+          window.location.origin + '?place=' + event.target.id;
+      });
+    });
+    aframe.registerComponent('markerhandler2-3', function () {
+      this.el.sceneEl.addEventListener('markerFound', (event) => {
+        // redirect to custom URL
+        window.location.href =
+          window.location.origin + '?place=' + event.target.id;
+      });
+    });
+    aframe.registerComponent('markerhandler3-2', function () {
+      this.el.sceneEl.addEventListener('markerFound', (event) => {
+        // redirect to custom URL
+        window.location.href =
+          window.location.origin + '?place=' + event.target.id;
+      });
+    });
+    aframe.registerComponent('markerhandler3-3', function () {
+      this.el.sceneEl.addEventListener('markerFound', (event) => {
+        // redirect to custom URL
+        window.location.href =
+          window.location.origin + '?place=' + event.target.id;
+      });
+    });
+    aframe.registerComponent('markerhandler4-2', function () {
+      this.el.sceneEl.addEventListener('markerFound', (event) => {
+        // redirect to custom URL
+        window.location.href =
+          window.location.origin + '?place=' + event.target.id;
+      });
+    });
+    aframe.registerComponent('markerhandler7-2', function () {
+      this.el.sceneEl.addEventListener('markerFound', (event) => {
+        // redirect to custom URL
+        window.location.href =
+          window.location.origin + '?place=' + event.target.id;
+      });
+    });
+    aframe.registerComponent('markerhandler8-2', function () {
+      this.el.sceneEl.addEventListener('markerFound', (event) => {
+        // redirect to custom URL
+        window.location.href =
+          window.location.origin + '?place=' + event.target.id;
+      });
+    });
+    aframe.registerComponent('markerhandler8-3', function () {
+      this.el.sceneEl.addEventListener('markerFound', (event) => {
+        // redirect to custom URL
+        window.location.href =
+          window.location.origin + '?place=' + event.target.id;
+      });
+    });
+    aframe.registerComponent('markerhandler9-2', function () {
+      this.el.sceneEl.addEventListener('markerFound', (event) => {
+        console.log(event);
+
+        // redirect to custom URL
+        window.location.href =
+          window.location.origin + '?place=' + event.target.id;
+      });
+    });
+    aframe.registerComponent('markerhandler9-3', function () {
+      this.el.sceneEl.addEventListener('markerFound', (event) => {
+        console.log(event);
+
+        // redirect to custom URL
+        window.location.href =
+          window.location.origin + '?place=' + event.target.id;
+      });
+    });
+    aframe.registerComponent('markerhandler9-4', function () {
+      this.el.sceneEl.addEventListener('markerFound', (event) => {
+        console.log(event);
+
+        // redirect to custom URL
+        window.location.href =
+          window.location.origin + '?place=' + event.target.id;
+      });
+    });
+    aframe.registerComponent('markerhandler9-5', function () {
+      this.el.sceneEl.addEventListener('markerFound', (event) => {
+        console.log(event);
+
+        // redirect to custom URL
+        window.location.href =
+          window.location.origin + '?place=' + event.target.id;
+      });
+    });
+    aframe.registerComponent('markerhandler9-6', function () {
+      this.el.sceneEl.addEventListener('markerFound', (event) => {
+        console.log(event);
+
+        // redirect to custom URL
+        window.location.href =
+          window.location.origin + '?place=' + event.target.id;
+      });
+    });
+    aframe.registerComponent('markerhandler10-2', function () {
+      this.el.sceneEl.addEventListener('markerFound', (event) => {
+        console.log(event);
+
+        // redirect to custom URL
+        window.location.href =
+          window.location.origin + '?place=' + event.target.id;
+      });
+    });
+    aframe.registerComponent('markerhandler10-3', function () {
+      this.el.sceneEl.addEventListener('markerFound', (event) => {
+        console.log(event);
+
+        // redirect to custom URL
+        window.location.href =
+          window.location.origin + '?place=' + event.target.id;
+      });
+    });
+    aframe.registerComponent('markerhandler10-4', function () {
+      this.el.sceneEl.addEventListener('markerFound', (event) => {
+        console.log(event);
+
+        // redirect to custom URL
+        window.location.href =
+          window.location.origin + '?place=' + event.target.id;
+      });
+    });
   }
 
   goBack() {

@@ -17,9 +17,9 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class FrameComponent implements OnInit {
   //States
   enableScanningMode: boolean = false;
-  enableScanner: boolean = false;
   successScan: boolean = false;
   QPloaded: boolean = false;
+  zoneClicked: boolean = false;
   hasZoneActive: boolean = false;
   scannerTexts: string[] = [
     'PRESIONA EL BOTON PARA ABRIR LA CÁMARA DEL CELULAR Y EN FOCA A LOS MARCADORES QUE ENCONTRARÁS EN LOS LUGARES PARA VER LOS CONTENIDOS',
@@ -127,28 +127,34 @@ export class FrameComponent implements OnInit {
     this.addSpacesOnNewDescription(this.description);
 
     this.activedRoute.queryParams.subscribe((params) => {
-      console.log(params);
-      if (Object.keys(params).length > 0 && params['place']) {
-        this.QPloaded = true;
-        this.hasZoneActive = true;
-        let qpSplitted: string[] = params['place'].split('-');
-        let zoneID: number = +qpSplitted[0];
-        let subZoneID: number = +qpSplitted[1];
-        this.activeZone = this.searchZoneModelById(zoneID);
+      if (!this.zoneClicked) {
+        if (Object.keys(params).length > 0 && params['place']) {
+          this.QPloaded = true;
+          this.hasZoneActive = true;
+          this.enableScanningMode = true;
+          let qpSplitted: string[] = params['place'].split('-');
+          let zoneID: number = +qpSplitted[0];
+          let subZoneID: number = +qpSplitted[1];
+          this.activeZone = this.searchZoneModelById(zoneID);
 
-        this.addSpacesOnNewDescription(this.activeZone.description);
-        this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
-          this.videoURLs[zoneID][subZoneID]
-        );
-        setTimeout(() => {
-          this.mapService.onZoneSelected.emit(this.activeZone);
-        }, 300);
-      } else {
-        this.QPloaded = false;
+          this.addSpacesOnNewDescription(this.activeZone.description);
+          this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
+            this.videoURLs[zoneID][subZoneID]
+          );
+          /*
+          setTimeout(() => {
+            this.mapService.onZoneSelected.emit(this.activeZone);
+          }, 300);
+          */
+        } else {
+          this.QPloaded = false;
+        }
       }
     });
 
     this.mapService.onZoneSelected.subscribe((zone: ZoneModel) => {
+      this.zoneClicked = true;
+
       if (!this.QPloaded) {
         window.scrollTo(0, 0);
         if (this.activeZone && zone.id == this.activeZone.id) {
@@ -167,10 +173,28 @@ export class FrameComponent implements OnInit {
             this.videoURLs[zone.id]['intro']
           );
         }
+      } else {
+        if (this.zoneClicked) {
+          if (this.activeZone && zone.id == this.activeZone.id) {
+            this.enableScanningMode = false;
+            this.activeZone = this.zones[this.zones.length - 1]; //On re-click show BIENVENIDO
+            this.addSpacesOnNewDescription(this.activeZone.description);
+            this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
+              this.videoURLs[zone.id]['intro']
+            );
+          } else {
+            this.enableScanningMode = true;
+            this.hasZoneActive = true;
+            this.activeZone = zone;
+            this.addSpacesOnNewDescription(zone.description);
+            this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
+              this.videoURLs[zone.id]['intro']
+            );
+          }
+        }
       }
     });
 
-    console.log(window.location.hash);
     tns({
       container: '.my-slider',
       items: 4,
@@ -220,20 +244,18 @@ export class FrameComponent implements OnInit {
   }
 
   enableScan() {
-    this.enableScanner = true;
     this.scannerActiveText = this.scannerTexts[1];
     history.pushState({ foo: 'Home' }, 'Home', this.router.url);
+    this.mapService.setZoneTypeToScan(this.activeZone.id);
     this.router.navigate([environment.routes.scan]);
   }
   disableScan() {
-    this.enableScanner = false;
     this.scannerActiveText = this.scannerTexts[0];
   }
 
   scanResult(placeScaned: PlacesEnum) {
     this.successScan = true;
     this.activeVideoURL = this.videoURLs[placeScaned];
-    this.enableScanner = false;
     this.enableScanningMode = false;
   }
 
