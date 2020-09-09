@@ -43,55 +43,58 @@ export class FrameComponent implements OnInit {
   scannerActiveText: string = this.scannerTexts[0];
   zones: ZoneModel[] = [];
   videoURLs: any = {
-    [PlacesEnum.BIENVENIDO]:
-      '/assets/videos/' + PlacesEnum.BIENVENIDO + '/intro.mp4',
+    [PlacesEnum.BIENVENIDO]: 'https://www.youtube.com/embed/eyMITx0vAxU',
     [PlacesEnum.ESTACION_FLUVIAL]: {
-      intro:
-        '/assets/videos/' + PlacesEnum.ESTACION_FLUVIAL + '/' + 'intro.mp4',
-      1: '/assets/videos/' + PlacesEnum.ESTACION_FLUVIAL + '/' + '1.mp4',
-      2: '/assets/videos/' + PlacesEnum.ESTACION_FLUVIAL + '/' + '2.mp4',
-      3: '/assets/videos/' + PlacesEnum.ESTACION_FLUVIAL + '/' + '3.mp4',
+      intro: 'https://www.youtube.com/embed/_DUTzemGSx8',
+      1: 'https://www.youtube.com/embed/9dqdTBasE0o',
+      2: 'https://www.youtube.com/embed/-1sneMKsYjw',
+      3: 'https://www.youtube.com/embed/umx0PpFc06M',
     },
     [PlacesEnum.MUELLE]: {
-      intro: '/assets/videos/' + PlacesEnum.MUELLE + '/' + 'intro.mp4',
-      1: '/assets/videos/' + PlacesEnum.MUELLE + '/' + '1.mp4',
-      2: '/assets/videos/' + PlacesEnum.MUELLE + '/' + '2.mp4',
-      3: '/assets/videos/' + PlacesEnum.MUELLE + '/' + '3.mp4',
+      intro: 'https://www.youtube.com/embed/YMJZaSzDWEk',
+      1: 'https://www.youtube.com/embed/OiCxLoqcpbg',
+      2: 'https://www.youtube.com/embed/EajxvoBfv60',
+      3: 'https://www.youtube.com/embed/lb8S_x0sCas',
     },
     [PlacesEnum.TIMBO]: {
-      intro: '/assets/videos/' + PlacesEnum.TIMBO + '/' + 'intro.mp4',
-      1: '/assets/videos/' + PlacesEnum.TIMBO + '/' + '1.mp4',
-      2: '/assets/videos/' + PlacesEnum.TIMBO + '/' + '2.mp4',
+      intro: 'https://www.youtube.com/embed/WhvZVbzDpdE',
+      1: 'https://www.youtube.com/embed/4eBhzgbENL4',
+      2: 'https://www.youtube.com/embed/DKvLnCfVu90',
     },
     [PlacesEnum.MASCARAS]: {
-      intro: '/assets/videos/' + PlacesEnum.MASCARAS + '/' + 'intro.mp4',
-      1: '/assets/videos/' + PlacesEnum.MASCARAS + '/' + '1.mp4',
+      intro: 'https://www.youtube.com/embed/jTQnOGdFIuM',
+      1: 'https://www.youtube.com/embed/d7P4rSk17Qo',
     },
     [PlacesEnum.GALARZA]: {
-      intro: '/assets/videos/' + PlacesEnum.GALARZA + '/' + 'intro.mp4',
+      intro: 'https://www.youtube.com/embed/99MWuxXqmPI',
     },
     [PlacesEnum.CAPILLA]: {
-      intro: 'https://www.youtube.com/embed/-X0NhnqVBN4',
-      1: 'https://www.youtube.com/embed/-X0NhnqVBN4',
+      intro: 'https://www.youtube.com/embed/LsRfnjHEoAM',
+      1: 'https://www.youtube.com/embed/QxS2qYpiXX8',
       2: 'https://www.youtube.com/embed/-X0NhnqVBN4',
-      3: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '3.mp4',
-      4: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '4.mp4',
-      5: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '5.mp4',
-      6: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '6.mp4',
+      3: 'https://www.youtube.com/embed/ZKEzAzscAwU',
+      4: 'https://www.youtube.com/embed/uB5StxCsdFQ',
+      5: 'https://www.youtube.com/embed/2ae3zMIWtf0',
+      6: 'https://www.youtube.com/embed/vl8OopBfleo',
     },
-
     [PlacesEnum.MAESO]: {
-      intro: '/assets/videos/' + PlacesEnum.MAESO + '/' + 'intro.mp4',
-      1: '/assets/videos/' + PlacesEnum.MAESO + '/' + '1.mp4',
+      intro: 'https://www.youtube.com/embed/FCrQiDvSQVQ',
+      1: 'https://www.youtube.com/embed/8sWjxTWz1FY',
+      2: 'https://www.youtube.com/embed/gg9xTC5ln9U',
+      3: 'https://www.youtube.com/embed/H_kmsjE6RR0',
     },
     [PlacesEnum.MARFETAN]: {
-      intro: '/assets/videos/' + PlacesEnum.MARFETAN + '/' + 'intro.mp4',
-      1: '/assets/videos/' + PlacesEnum.MARFETAN + '/' + '1.mp4',
+      intro: 'https://www.youtube.com/embed/_Me9SYtyxeE',
+      1: 'https://www.youtube.com/embed/s4jOpjbyL8k',
+      2: 'https://www.youtube.com/embed/cNChpvSfLok',
+      3: 'https://www.youtube.com/embed/mYlIK6VtXzE',
+      4: 'https://www.youtube.com/embed/dTF1t8tUBMw',
     },
 
     [PlacesEnum.SOLAR]: {
-      intro: '/assets/videos/' + PlacesEnum.SOLAR + '/' + 'intro.mp4',
-      1: '/assets/videos/' + PlacesEnum.SOLAR + '/' + '1.mp4',
+      intro: 'https://www.youtube.com/embed/FRg7WXXmmpU',
+      1: 'https://www.youtube.com/embed/ZC1whZIJov0',
+      2: 'https://www.youtube.com/embed/DW84K3L0vG8',
     },
   };
 
@@ -118,7 +121,9 @@ export class FrameComponent implements OnInit {
 
   ngOnInit() {
     this.zones = this.mapService.getZones();
-    this.activeVideoURL = this.videoURLs[PlacesEnum.BIENVENIDO];
+    this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
+      this.videoURLs[PlacesEnum.BIENVENIDO]
+    );
     this.addSpacesOnNewDescription(this.description);
 
     this.activedRoute.queryParams.subscribe((params) => {
@@ -151,7 +156,7 @@ export class FrameComponent implements OnInit {
           this.activeZone = this.zones[this.zones.length - 1]; //On re-click show BIENVENIDO
           this.addSpacesOnNewDescription(this.activeZone.description);
           this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
-            this.activeZone.videoURL
+            this.videoURLs[zone.id]['intro']
           );
         } else {
           this.enableScanningMode = true;
@@ -159,7 +164,7 @@ export class FrameComponent implements OnInit {
           this.activeZone = zone;
           this.addSpacesOnNewDescription(zone.description);
           this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
-            this.activeZone.videoURL
+            this.videoURLs[zone.id]['intro']
           );
         }
       }
