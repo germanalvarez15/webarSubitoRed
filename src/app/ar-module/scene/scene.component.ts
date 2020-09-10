@@ -42,7 +42,25 @@ export class SceneComponent implements OnInit {
   }
   isActive: boolean = false;
   ngOnInit(): void {
-    this.trackingListeners();
+    //this.trackingListeners();
+    aframe.registerComponent('markerhandler', {
+      init: function () {
+        this.el.sceneEl.addEventListener('markerFound', (event) => {
+          // redirect to custom URL
+          window.location.href =
+            window.location.origin + 'place=' + event.target.id;
+        });
+      },
+    });
+    aframe.registerComponent('markerhandler', {
+      init: function () {
+        this.el.addEventListener('markerFound', (event) => {
+          // redirect to custom URL
+          window.location.href =
+            window.location.origin + 'place=' + event.target.id;
+        });
+      },
+    });
 
     this.orientationService.onOrientation.subscribe((orientation: string) => {
       if (orientation == 'landscape') {

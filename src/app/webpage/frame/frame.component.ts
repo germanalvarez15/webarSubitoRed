@@ -17,6 +17,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class FrameComponent implements OnInit {
   //States
   enableScanningMode: boolean = false;
+  enableScann: boolean = false;
   successScan: boolean = false;
   QPloaded: boolean = false;
   zoneClicked: boolean = false;
@@ -159,6 +160,8 @@ export class FrameComponent implements OnInit {
         window.scrollTo(0, 0);
         if (this.activeZone && zone.id == this.activeZone.id) {
           this.enableScanningMode = false;
+          this.enableScann = false;
+
           this.activeZone = this.zones[this.zones.length - 1]; //On re-click show BIENVENIDO
           this.addSpacesOnNewDescription(this.activeZone.description);
           this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
@@ -166,6 +169,8 @@ export class FrameComponent implements OnInit {
           );
         } else {
           this.enableScanningMode = true;
+          this.enableScann = false;
+
           this.hasZoneActive = true;
           this.activeZone = zone;
           this.addSpacesOnNewDescription(zone.description);
@@ -177,6 +182,8 @@ export class FrameComponent implements OnInit {
         if (this.zoneClicked) {
           if (this.activeZone && zone.id == this.activeZone.id) {
             this.enableScanningMode = false;
+            this.enableScann = false;
+
             this.activeZone = this.zones[this.zones.length - 1]; //On re-click show BIENVENIDO
             this.addSpacesOnNewDescription(this.activeZone.description);
             this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
@@ -184,6 +191,8 @@ export class FrameComponent implements OnInit {
             );
           } else {
             this.enableScanningMode = true;
+            this.enableScann = false;
+
             this.hasZoneActive = true;
             this.activeZone = zone;
             this.addSpacesOnNewDescription(zone.description);
@@ -245,17 +254,25 @@ export class FrameComponent implements OnInit {
 
   enableScan() {
     this.scannerActiveText = this.scannerTexts[1];
-    history.pushState({ foo: 'Home' }, 'Home', this.router.url);
     this.mapService.setZoneTypeToScan(this.activeZone.id);
-    this.router.navigate([environment.routes.scan]);
+    this.enableScann = true;
+    // this.router.navigate([environment.routes.scan]);
+    //history.pushState({ foo: 'Home' }, 'Home', this.router.url);
   }
   disableScan() {
     this.scannerActiveText = this.scannerTexts[0];
+    this.enableScanningMode = false;
+    this.enableScann = false;
   }
 
-  scanResult(placeScaned: PlacesEnum) {
+  scanResult(placeScaned: any) {
     this.successScan = true;
-    this.activeVideoURL = this.videoURLs[placeScaned];
+    this.enableScann = false;
+    this.router.navigate([
+      'https://vivevillasoriano.web.app/' + '?' + placeScaned,
+    ]);
+
+    //this.activeVideoURL = this.videoURLs[placeScaned];
     this.enableScanningMode = false;
   }
 

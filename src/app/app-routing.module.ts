@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 
 const routes: Routes = [
   { path: '', component: FrameComponent },
-  { path: environment.routes.scan, component: SceneComponent },
+  { path: environment.routes.scan, component: ScanComponent },
   { path: environment.routes.home, component: FrameComponent },
   { path: environment.routes.home + '/:place', component: FrameComponent },
 ];

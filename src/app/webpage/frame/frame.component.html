@@ -52,6 +52,7 @@
   </nav>
 
   <iframe
+    *ngIf="!enableScann"
     width="560"
     height="315"
     [src]="activeVideoURL"
@@ -60,6 +61,7 @@
     allowfullscreen
     class="media-video"
   ></iframe>
+  <app-scan (onScannResult)="scanResult($event)" *ngIf="enableScann"></app-scan>
   <!--
   <video
     [src]="activeVideoURL"
@@ -81,7 +83,7 @@
   <section>
     <!-- MAIN TEXT -->
     <div class="infoText" [innerHTML]="description"></div>
-    <div style="width: 100%" *ngIf="activeZone.hasScannMode">
+    <div style="width: 100%" *ngIf="enableScanningMode">
       <div style="padding-left: 20%">
         <a
           style="padding-left: 25%"

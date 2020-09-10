@@ -1,31 +1,10 @@
-<!-- MEDIA -->
-<div class="embed-responsive embed-responsive-16by9 mediaContainer">
-  <a-scene
-    vr-mode-ui="enabled: false;"
-    renderer="logarithmicDepthBuffer: true;"
-    embedded
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
-  >
-    <!-- a-nft is the anchor that defines an Image Tracking entity -->
-    <!-- on 'url' use the path to the Image Descriptors created before. -->
-    <!-- the path should end with the name without the extension e.g. if file is 'pinball.fset' the path should end with 'pinball' -->
-    <a-nft
-      type="nft"
-      url="assets/trackingImages/candombe/candombe"
-      smooth="true"
-      smoothCount="10"
-      smoothTolerance=".01"
-      smoothThreshold="5"
-    >
-      <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
-      <a-entity
-        gltf-model="assets/models/Astronaut.gltf"
-        scale="100 100 100"
-        position="0 0 0"
-        rotation="-35 25 -35"
-      ></a-entity>
-    </a-nft>
-    <!-- static camera that moves according to the device movemenents -->
-    <a-entity camera></a-entity>
-  </a-scene>
+<div
+  class="embed-responsive embed-responsive-16by9 mediaContainer"
+  style="width: 100%"
+>
+  <zxing-scanner
+    #scanner
+    (scanSuccess)="scanSuccessHandler($event)"
+    [formats]="['QR_CODE', 'CODABAR', 'CODE_128']"
+  ></zxing-scanner>
 </div>
