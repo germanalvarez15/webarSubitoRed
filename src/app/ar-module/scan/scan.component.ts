@@ -27,6 +27,6 @@ export class ScanComponent implements OnInit {
    */
   scanSuccessHandler(event): void {
     this.onScannResult.emit(event);
-    console.log('RESULTADO: ' + event);
+    console.log(event);
   }
 }

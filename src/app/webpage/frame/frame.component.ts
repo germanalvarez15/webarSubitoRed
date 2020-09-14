@@ -23,7 +23,7 @@ export class FrameComponent implements OnInit {
   zoneClicked: boolean = false;
   hasZoneActive: boolean = false;
   scannerTexts: string[] = [
-    'PRESIONA EL BOTON PARA ABRIR LA CÁMARA DEL CELULAR Y EN FOCA A LOS MARCADORES QUE ENCONTRARÁS EN LOS LUGARES PARA VER LOS CONTENIDOS',
+    'PRESIONA EL BOTON PARA ABRIR LA CÁMARA DEL CELULAR Y ENFOCA A LOS MARCADORES QUE ENCONTRARÁS EN LOS LUGARES PARA VER LOS CONTENIDOS',
     'ESCANEA EL CODIGO PARA DESCUBRIR MAS CONTENIDO',
   ];
 
@@ -44,7 +44,7 @@ export class FrameComponent implements OnInit {
   scannerActiveText: string = this.scannerTexts[0];
   zones: ZoneModel[] = [];
   videoURLs: any = {
-    [PlacesEnum.BIENVENIDO]: 'https://www.youtube.com/embed/eyMITx0vAxU',
+    [PlacesEnum.BIENVENIDO]: 'https://www.youtube.com/embed/ux9aiyTeuU8',
     [PlacesEnum.ESTACION_FLUVIAL]: {
       intro: 'https://www.youtube.com/embed/_DUTzemGSx8',
       1: 'https://www.youtube.com/embed/9dqdTBasE0o',
@@ -58,9 +58,9 @@ export class FrameComponent implements OnInit {
       3: 'https://www.youtube.com/embed/lb8S_x0sCas',
     },
     [PlacesEnum.TIMBO]: {
-      intro: 'https://www.youtube.com/embed/WhvZVbzDpdE',
-      1: 'https://www.youtube.com/embed/4eBhzgbENL4',
-      2: 'https://www.youtube.com/embed/DKvLnCfVu90',
+      intro: 'https://www.youtube.com/embed/dje_4ZXNBj0',
+      1: 'https://www.youtube.com/embed/NIjrRLqGxWA',
+      2: 'https://www.youtube.com/embed/C8__2mEmMJ8',
     },
     [PlacesEnum.MASCARAS]: {
       intro: 'https://www.youtube.com/embed/jTQnOGdFIuM',
@@ -165,7 +165,7 @@ export class FrameComponent implements OnInit {
           this.activeZone = this.zones[this.zones.length - 1]; //On re-click show BIENVENIDO
           this.addSpacesOnNewDescription(this.activeZone.description);
           this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
-            this.videoURLs[zone.id]['intro']
+            this.activeZone.videoURL
           );
         } else {
           this.enableScanningMode = true;
@@ -218,26 +218,26 @@ export class FrameComponent implements OnInit {
         320: {
           edgePadding: 5,
           gutter: 20,
-          items: 2,
+          items: 4,
         },
         375: {
           edgePadding: 5,
           gutter: 20,
-          items: 2,
+          items: 4,
         },
         414: {
           edgePadding: 5,
           gutter: 20,
-          items: 2,
+          items: 4,
         },
         736: {
           edgePadding: 10,
-          items: 2,
+          items: 4,
         },
 
         900: {
           edgePadding: 9,
-          items: 3,
+          items: 4,
         },
         1200: {
           edgePadding: 10,
@@ -256,6 +256,7 @@ export class FrameComponent implements OnInit {
     this.scannerActiveText = this.scannerTexts[1];
     this.mapService.setZoneTypeToScan(this.activeZone.id);
     this.enableScann = true;
+    window.scrollTo(0, 0);
     // this.router.navigate([environment.routes.scan]);
     //history.pushState({ foo: 'Home' }, 'Home', this.router.url);
   }
@@ -265,12 +266,13 @@ export class FrameComponent implements OnInit {
     this.enableScann = false;
   }
 
-  scanResult(placeScaned: any) {
+  scanResult(placeScaned: string) {
     this.successScan = true;
     this.enableScann = false;
-    this.router.navigate([
-      'https://vivevillasoriano.web.app/' + '?' + placeScaned,
-    ]);
+    let splitQP: string[] = placeScaned.split('=');
+    this.router.navigate([environment.routes.home], {
+      queryParams: { place: splitQP[1] },
+    });
 
     //this.activeVideoURL = this.videoURLs[placeScaned];
     this.enableScanningMode = false;
@@ -284,5 +286,9 @@ export class FrameComponent implements OnInit {
       }
     });
     return zoneFound;
+  }
+
+  scrollTo(x: number, y: number) {
+    window.scrollTo(x, y);
   }
 }
