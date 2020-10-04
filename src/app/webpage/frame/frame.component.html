@@ -49,7 +49,7 @@
   </nav>
 
   <iframe
-    *ngIf="!isLoadedFromRaspberry && !enableScann"
+    *ngIf="!isLoadedLocally && !enableScann"
     width="560"
     height="315"
     [src]="activeVideoURL"
@@ -61,7 +61,7 @@
   <app-scan (onScannResult)="scanResult($event)" *ngIf="enableScann"></app-scan>
 
   <video
-    *ngIf="isLoadedFromRaspberry && !enableScann"
+    *ngIf="isLoadedLocally && !enableScann"
     [src]="activeVideoURL"
     class="media-video"
     preload="metadata"
