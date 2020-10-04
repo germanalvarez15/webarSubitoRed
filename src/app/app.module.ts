@@ -11,6 +11,7 @@ import { CoinComponent } from './webpage/frame/coin/coin.component';
 import { MapContainerComponent } from './webpage/frame/map-container/map-container.component';
 import { ImageTargetComponent } from './ar-module/scene/image-target/image-target.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,12 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     MapContainerComponent,
     ImageTargetComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ZXingScannerModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ZXingScannerModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

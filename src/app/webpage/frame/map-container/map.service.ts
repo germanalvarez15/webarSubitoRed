@@ -23,6 +23,13 @@ export class MapService {
         3: 'https://www.youtube.com/embed/umx0PpFc06M',
       },
       {
+        intro:
+          '/assets/videos/' + PlacesEnum.ESTACION_FLUVIAL + '/' + 'intro.mp4',
+        1: '/assets/videos/' + PlacesEnum.ESTACION_FLUVIAL + '/' + '1.mp4',
+        2: '/assets/videos/' + PlacesEnum.ESTACION_FLUVIAL + '/' + '2.mp4',
+        3: '/assets/videos/' + PlacesEnum.ESTACION_FLUVIAL + '/' + '3.mp4',
+      },
+      {
         1: '/assets/trackingImages/' + PlacesEnum.ESTACION_FLUVIAL + '/' + '1',
         2: '/assets/trackingImages/' + PlacesEnum.ESTACION_FLUVIAL + '/' + '2',
         3: '/assets/trackingImages/' + PlacesEnum.ESTACION_FLUVIAL + '/' + '3',
@@ -42,6 +49,12 @@ export class MapService {
         1: 'https://www.youtube.com/embed/OiCxLoqcpbg',
         2: 'https://www.youtube.com/embed/EajxvoBfv60',
         3: 'https://www.youtube.com/embed/lb8S_x0sCas',
+      },
+      {
+        intro: '/assets/videos/' + PlacesEnum.MUELLE + '/' + 'intro.mp4',
+        1: '/assets/videos/' + PlacesEnum.MUELLE + '/' + '1.mp4',
+        2: '/assets/videos/' + PlacesEnum.MUELLE + '/' + '2.mp4',
+        3: '/assets/videos/' + PlacesEnum.MUELLE + '/' + '3.mp4',
       },
       {
         1: '/assets/trackingImages/' + PlacesEnum.MUELLE + '/' + '1',
@@ -64,6 +77,11 @@ export class MapService {
         2: 'https://www.youtube.com/embed/DKvLnCfVu90',
       },
       {
+        intro: '/assets/videos/' + PlacesEnum.TIMBO + '/' + 'intro.mp4',
+        1: '/assets/videos/' + PlacesEnum.TIMBO + '/' + '1.mp4',
+        2: '/assets/videos/' + PlacesEnum.TIMBO + '/' + '2.mp4',
+      },
+      {
         1: '/assets/trackingImages/' + PlacesEnum.TIMBO + '/' + '1',
         2: '/assets/trackingImages/' + PlacesEnum.TIMBO + '/' + '2',
       },
@@ -82,6 +100,12 @@ export class MapService {
         1: 'https://www.youtube.com/embed/8sWjxTWz1FY',
         2: 'https://www.youtube.com/embed/gg9xTC5ln9U',
         3: 'https://www.youtube.com/embed/H_kmsjE6RR0',
+      },
+      {
+        intro: '/assets/videos/' + PlacesEnum.MAESO + '/' + 'intro.mp4',
+        1: '/assets/videos/' + PlacesEnum.MAESO + '/' + '1.mp4',
+        2: '/assets/videos/' + PlacesEnum.MAESO + '/' + '2.mp4',
+        3: '/assets/videos/' + PlacesEnum.MAESO + '/' + '3.mp4',
       },
       {
         1: '/assets/trackingImages/' + PlacesEnum.MAESO + '/' + '1',
@@ -106,6 +130,13 @@ export class MapService {
         4: 'https://www.youtube.com/embed/dTF1t8tUBMw',
       },
       {
+        intro: '/assets/videos/' + PlacesEnum.MARFETAN + '/' + 'intro.mp4',
+        1: '/assets/videos/' + PlacesEnum.MARFETAN + '/' + '1.mp4',
+        2: '/assets/videos/' + PlacesEnum.MARFETAN + '/' + '2.mp4',
+        3: '/assets/videos/' + PlacesEnum.MARFETAN + '/' + '3.mp4',
+        4: '/assets/videos/' + PlacesEnum.MARFETAN + '/' + '4.mp4',
+      },
+      {
         1: '/assets/trackingImages/' + PlacesEnum.MARFETAN + '/' + '1',
         2: '/assets/trackingImages/' + PlacesEnum.MARFETAN + '/' + '2',
         3: '/assets/trackingImages/' + PlacesEnum.MARFETAN + '/' + '3',
@@ -128,6 +159,10 @@ export class MapService {
         1: 'https://www.youtube.com/embed/d7P4rSk17Qo',
       },
       {
+        intro: '/assets/videos/' + PlacesEnum.MASCARAS + '/' + 'intro.mp4',
+        1: '/assets/videos/' + PlacesEnum.MASCARAS + '/' + '1.mp4',
+      },
+      {
         1: '/assets/trackingImages/' + PlacesEnum.MASCARAS + '/' + '1',
       },
       new WaypointValuesPortrait(23, 13, 37, 60),
@@ -142,6 +177,9 @@ export class MapService {
       'url(/assets/img/places/galarza.png)',
       {
         intro: 'https://www.youtube.com/embed/99MWuxXqmPI',
+      },
+      {
+        intro: '/assets/videos/' + PlacesEnum.GALARZA + '/' + 'intro.mp4',
       },
       {
         1: '/assets/trackingImages/' + PlacesEnum.GALARZA + '/' + '1',
@@ -160,6 +198,11 @@ export class MapService {
         intro: 'https://www.youtube.com/embed/FRg7WXXmmpU',
         1: 'https://www.youtube.com/embed/ZC1whZIJov0',
         2: 'https://www.youtube.com/embed/DW84K3L0vG8',
+      },
+      {
+        intro: '/assets/videos/' + PlacesEnum.SOLAR + '/' + 'intro.mp4',
+        1: '/assets/videos/' + PlacesEnum.SOLAR + '/' + '1.mp4',
+        2: '/assets/videos/' + PlacesEnum.SOLAR + '/' + '2.mp4',
       },
       {
         1: '/assets/trackingImages/' + PlacesEnum.SOLAR + '/' + '1',
@@ -185,6 +228,15 @@ export class MapService {
         6: 'https://www.youtube.com/embed/vl8OopBfleo',
       },
       {
+        intro: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + 'intro.mp4',
+        1: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '1.mp4',
+        2: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '2.mp4',
+        3: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '3.mp4',
+        4: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '4.mp4',
+        5: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '5.mp4',
+        6: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '6.mp4',
+      },
+      {
         1: '/assets/trackingImages/' + PlacesEnum.CAPILLA + '/' + '1',
         2: '/assets/trackingImages/' + PlacesEnum.CAPILLA + '/' + '2',
         3: '/assets/trackingImages/' + PlacesEnum.CAPILLA + '/' + '3',
@@ -203,6 +255,7 @@ export class MapService {
       '¡Bienvenido! Durante este recorrido auto-guiado vas a pasear por la historia de Villa Soriano. Será un viaje sin tiempo, que te permitirá pasar de un siglo a otro con tan solo unas cuadras de diferencia.\nPodrás adentrarte en los recovecos de una de las primeras poblaciones del Uruguay y disfrutar de un atardecer colonial en un muelle renovado.\nNotarás que se mezclará la historia nacional con la de sus pobladores y que eso lo convertirá en un paseo único. Ejemplo de esto podrá ser la historia de Don Paco: descendiente de uno de los Treinta y Tres Orientales e hijo de un artista plástico cuya casa está repleta de máscaras expresivas y coloridas.\nUno de los destinos estará contextualizado en el pasado revolucionario, será el predio donde vivían José Gervasio Artigas e Isabel Sánchez. Comenzarás la historia conociendo a aquel Artigas joven y padre de familia, y llegarás hasta el día de hoy, donde conocerás a la tátara nieta de ambos.\nPodrás rememorar una costumbre religiosa y conocer hasta el más mínimo detalle de una capilla singular. Escuchar la historia de la vida de los vecinos a través de un Timbó solemne, o conocer la personalidad de una artista anticipada para la época. Adentrarte en una cocina antigua, escuchar las leyendas del pueblo, sentir el sonido de las aves, reconstruir el pasado y volver al presente, caminar, investigar, charlar y disfrutar.',
       'url(/assets/img/places/fluvial.png)',
       'https://www.youtube.com/embed/eyMITx0vAxU',
+      '/assets/videos/' + PlacesEnum.BIENVENIDO + '/intro.mp4',
       [],
       new WaypointValuesPortrait(79, 29, 79, 50),
       new WaypointValuesLandscape(82, 39, 79, 63),

@@ -8,6 +8,9 @@ import { WaypointValuesPortrait } from './map-container/waypoint-values/waypoint
 import { WaypointValuesLandscape } from './map-container/waypoint-values/waypoint-landscapte-values.model';
 import { tns } from 'node_modules/tiny-slider/src/tiny-slider';
 import { DomSanitizer } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
+import { catchError, map, take } from 'rxjs/operators';
+import { Observable, ObservableInput, of } from 'rxjs';
 
 @Component({
   selector: 'app-frame',
@@ -98,17 +101,75 @@ export class FrameComponent implements OnInit {
       2: 'https://www.youtube.com/embed/DW84K3L0vG8',
     },
   };
+  videoURLsLocal: any = {
+    [PlacesEnum.BIENVENIDO]:
+      '/assets/videos/' + PlacesEnum.BIENVENIDO + '/intro.mp4',
+    [PlacesEnum.ESTACION_FLUVIAL]: {
+      intro:
+        '/assets/videos/' + PlacesEnum.ESTACION_FLUVIAL + '/' + 'intro.mp4',
+      1: '/assets/videos/' + PlacesEnum.ESTACION_FLUVIAL + '/' + '1.mp4',
+      2: '/assets/videos/' + PlacesEnum.ESTACION_FLUVIAL + '/' + '2.mp4',
+      3: '/assets/videos/' + PlacesEnum.ESTACION_FLUVIAL + '/' + '3.mp4',
+    },
+    [PlacesEnum.MUELLE]: {
+      intro: '/assets/videos/' + PlacesEnum.MUELLE + '/' + 'intro.mp4',
+      1: '/assets/videos/' + PlacesEnum.MUELLE + '/' + '1.mp4',
+      2: '/assets/videos/' + PlacesEnum.MUELLE + '/' + '2.mp4',
+      3: '/assets/videos/' + PlacesEnum.MUELLE + '/' + '3.mp4',
+    },
+    [PlacesEnum.TIMBO]: {
+      intro: '/assets/videos/' + PlacesEnum.TIMBO + '/' + 'intro.mp4',
+      1: '/assets/videos/' + PlacesEnum.TIMBO + '/' + '1.mp4',
+      2: '/assets/videos/' + PlacesEnum.TIMBO + '/' + '2.mp4',
+    },
+    [PlacesEnum.MASCARAS]: {
+      intro: '/assets/videos/' + PlacesEnum.MASCARAS + '/' + 'intro.mp4',
+      1: '/assets/videos/' + PlacesEnum.MASCARAS + '/' + '1.mp4',
+    },
+    [PlacesEnum.GALARZA]: {
+      intro: '/assets/videos/' + PlacesEnum.GALARZA + '/' + 'intro.mp4',
+    },
+    [PlacesEnum.CAPILLA]: {
+      intro: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + 'intro.mp4',
+      1: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '1.mp4',
+      2: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '2.mp4',
+      3: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '3.mp4',
+      4: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '4.mp4',
+      5: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '5.mp4',
+      6: '/assets/videos/' + PlacesEnum.CAPILLA + '/' + '6.mp4',
+    },
 
+    [PlacesEnum.MAESO]: {
+      intro: '/assets/videos/' + PlacesEnum.MAESO + '/' + 'intro.mp4',
+      1: '/assets/videos/' + PlacesEnum.MAESO + '/' + '1.mp4',
+      2: '/assets/videos/' + PlacesEnum.MAESO + '/' + '2.mp4',
+      3: '/assets/videos/' + PlacesEnum.MAESO + '/' + '3.mp4',
+    },
+    [PlacesEnum.MARFETAN]: {
+      intro: '/assets/videos/' + PlacesEnum.MARFETAN + '/' + 'intro.mp4',
+      1: '/assets/videos/' + PlacesEnum.MARFETAN + '/' + '1.mp4',
+      2: '/assets/videos/' + PlacesEnum.MARFETAN + '/' + '2.mp4',
+      3: '/assets/videos/' + PlacesEnum.MARFETAN + '/' + '3.mp4',
+      4: '/assets/videos/' + PlacesEnum.MARFETAN + '/' + '4.mp4',
+    },
+    [PlacesEnum.SOLAR]: {
+      intro: '/assets/videos/' + PlacesEnum.SOLAR + '/' + 'intro.mp4',
+      1: '/assets/videos/' + PlacesEnum.SOLAR + '/' + '1.mp4',
+      2: '/assets/videos/' + PlacesEnum.SOLAR + '/' + '2.mp4',
+    },
+  };
   activeVideoURL: any;
   description: string =
     '¡Bienvenido! Durante este recorrido auto-guiado vas a pasear por la historia de Villa Soriano. Será un viaje sin tiempo, que te permitirá pasar de un siglo a otro con tan solo unas cuadras de diferencia. \n Podrás adentrarte en los recovecos de una de las primeras poblaciones del Uruguay y disfrutar de un atardecer colonial en un muelle renovado. \n Notarás que se mezclará la historia nacional con la de sus pobladores y que eso lo convertirá en un paseo único. Ejemplo de esto podrá ser la historia de Don Paco: descendiente de uno de los Treinta y Tres Orientales e hijo de un artista plástico cuya casa está repleta de máscaras expresivas y coloridas. \n Uno de los destinos estará contextualizado en el pasado revolucionario, será el predio donde vivían José Gervasio Artigas e Isabel Sánchez. Comenzarás la historia conociendo a aquel Artigas joven y padre de familia, y llegarás hasta el día de hoy, donde conocerás a la tátara nieta de ambos. \n Podrás rememorar una costumbre religiosa y conocer hasta el más mínimo detalle de una capilla singular. Escuchar la historia de la vida de los vecinos a través de un Timbó solemne, o conocer la personalidad de una artista anticipada para la época. Adentrarte en una cocina antigua, escuchar las leyendas del pueblo, sentir el sonido de las aves, reconstruir el pasado y volver al presente, caminar, investigar, charlar y disfrutar.';
   activeZone: ZoneModel;
 
+  isLoadedLocally: boolean;
   constructor(
     private mapService: MapService,
     private router: Router,
     private activedRoute: ActivatedRoute,
-    private _sanitizer: DomSanitizer
+    private _sanitizer: DomSanitizer,
+    private http: HttpClient
   ) {
     let randomNumber: number = Math.floor(
       Math.random() * this.sofiaImageRoutes.length
@@ -122,10 +183,8 @@ export class FrameComponent implements OnInit {
 
   ngOnInit() {
     this.zones = this.mapService.getZones();
-    this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
-      this.videoURLs[PlacesEnum.BIENVENIDO]
-    );
-    this.addSpacesOnNewDescription(this.description);
+    //Set video bienvenida
+    this.checkIfItsLoadedLocaly(PlacesEnum.BIENVENIDO);
 
     this.activedRoute.queryParams.subscribe((params) => {
       if (!this.zoneClicked) {
@@ -139,14 +198,7 @@ export class FrameComponent implements OnInit {
           this.activeZone = this.searchZoneModelById(zoneID);
 
           this.addSpacesOnNewDescription(this.activeZone.description);
-          this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
-            this.videoURLs[zoneID][subZoneID]
-          );
-          /*
-          setTimeout(() => {
-            this.mapService.onZoneSelected.emit(this.activeZone);
-          }, 300);
-          */
+          this.checkIfItsLoadedLocaly(zoneID, subZoneID);
         } else {
           this.QPloaded = false;
         }
@@ -164,9 +216,12 @@ export class FrameComponent implements OnInit {
 
           this.activeZone = this.zones[this.zones.length - 1]; //On re-click show BIENVENIDO
           this.addSpacesOnNewDescription(this.activeZone.description);
-          this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
-            this.activeZone.videoURL
-          );
+          if (this.isLoadedLocally)
+            this.activeVideoURL = this.activeZone.videoURLLocal;
+          else
+            this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
+              this.activeZone.videoURL
+            );
         } else {
           this.enableScanningMode = true;
           this.enableScann = false;
@@ -174,9 +229,12 @@ export class FrameComponent implements OnInit {
           this.hasZoneActive = true;
           this.activeZone = zone;
           this.addSpacesOnNewDescription(zone.description);
-          this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
-            this.videoURLs[zone.id]['intro']
-          );
+          if (this.isLoadedLocally)
+            this.activeVideoURL = this.videoURLsLocal[zone.id]['intro'];
+          else
+            this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
+              this.videoURLs[zone.id]['intro']
+            );
         }
       } else {
         if (this.zoneClicked) {
@@ -186,9 +244,12 @@ export class FrameComponent implements OnInit {
 
             this.activeZone = this.zones[this.zones.length - 1]; //On re-click show BIENVENIDO
             this.addSpacesOnNewDescription(this.activeZone.description);
-            this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
-              this.videoURLs[zone.id]['intro']
-            );
+            if (this.isLoadedLocally)
+              this.activeVideoURL = this.videoURLsLocal[zone.id]['intro'];
+            else
+              this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
+                this.videoURLs[zone.id]['intro']
+              );
           } else {
             this.enableScanningMode = true;
             this.enableScann = false;
@@ -196,9 +257,12 @@ export class FrameComponent implements OnInit {
             this.hasZoneActive = true;
             this.activeZone = zone;
             this.addSpacesOnNewDescription(zone.description);
-            this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
-              this.videoURLs[zone.id]['intro']
-            );
+            if (this.isLoadedLocally)
+              this.activeVideoURL = this.videoURLsLocal[zone.id]['intro'];
+            else
+              this.activeVideoURL = this._sanitizer.bypassSecurityTrustResourceUrl(
+                this.videoURLs[zone.id]['intro']
+              );
           }
         }
       }
@@ -290,5 +354,36 @@ export class FrameComponent implements OnInit {
 
   scrollTo(x: number, y: number) {
     window.scrollTo(x, y);
+  }
+
+  fileExists(url: string): Observable<boolean> {
+    return this.http.get(url).pipe(
+      map(() => true),
+      catchError(() => of(false))
+    );
+  }
+  checkIfItsLoadedLocaly(place: PlacesEnum, subPlace?: PlacesEnum) {
+    let videoURL;
+    //Si el video de bienvenida no existe, se asume que se esta viendo desde internet
+    this.fileExists(this.videoURLsLocal[PlacesEnum.BIENVENIDO]).subscribe(
+      (fileExist) => {
+        if (fileExist) {
+          this.activeVideoURL =
+            place && subPlace
+              ? this.videoURLsLocal[place][subPlace]
+              : this.videoURLsLocal[place];
+        } else {
+          this.activeVideoURL =
+            place && subPlace
+              ? this._sanitizer.bypassSecurityTrustResourceUrl(
+                  this.videoURLs[place][subPlace]
+                )
+              : this._sanitizer.bypassSecurityTrustResourceUrl(
+                  this.videoURLs[place]
+                );
+        }
+        this.isLoadedLocally = fileExist;
+      }
+    );
   }
 }

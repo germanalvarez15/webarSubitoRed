@@ -8,10 +8,11 @@ export class ZoneModel {
     public description: string,
     public coinImage: string,
     public videoURL: any,
+    public videoURLLocal: any,
     public markersURL: any,
     public portraitValues: WaypointValuesPortrait,
     public landscapeValues: WaypointValuesLandscape,
     public textAlignRight: boolean,
     public hasScannMode: boolean
-  ) { }
+  ) {}
 }
