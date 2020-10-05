@@ -58,7 +58,6 @@
     allowfullscreen
     class="media-video"
   ></iframe>
-  <app-scan (onScannResult)="scanResult($event)" *ngIf="enableScann"></app-scan>
 
   <video
     *ngIf="isLoadedLocally && !enableScann"
@@ -67,10 +66,14 @@
     preload="metadata"
     controls
     muted
+    (error)="onVideoError($event)"
   >
     <source type="video/mp4" />
     Your browser does not support the video tag.
   </video>
+
+  <app-scan (onScannResult)="scanResult($event)" *ngIf="enableScann"></app-scan>
+
   <!--
   <app-scan
     (onScannResult)="scanResult($event)"
