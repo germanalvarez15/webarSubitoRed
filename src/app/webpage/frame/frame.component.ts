@@ -383,22 +383,4 @@ export class FrameComponent implements OnInit {
             );
     }
   }
-  /*
-  setVideo(place: PlacesEnum, subPlace?: PlacesEnum) {
-    //Si el video de bienvenida no existe, se asume que se esta viendo desde internet
-
-    this.fileExists(this.videoURLsLocal[PlacesEnum.BIENVENIDO]).subscribe(
-      (fileExist) => {
-        console.log(fileExist);
-      }
-    );
-  }
-
-  fileExists(url: string): Observable<boolean> {
-    return this.http.get(url).pipe(
-      map(() => true),
-      catchError(() => of(false))
-    );
-  }
-  */
 }
