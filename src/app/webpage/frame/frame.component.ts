@@ -367,6 +367,8 @@ export class FrameComponent implements OnInit {
     //Si el video de bienvenida no existe, se asume que se esta viendo desde internet
     this.fileExists(this.videoURLsLocal[PlacesEnum.BIENVENIDO]).subscribe(
       (fileExist) => {
+        console.log(fileExist);
+
         if (fileExist) {
           this.activeVideoURL =
             place && subPlace
