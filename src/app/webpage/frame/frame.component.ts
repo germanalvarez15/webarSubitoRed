@@ -365,8 +365,6 @@ export class FrameComponent implements OnInit {
   }
 
   setVideo(place: PlacesEnum, subPlace?: PlacesEnum) {
-    console.log(this.isLoadedLocally);
-
     if (this.isLoadedLocally) {
       this.activeVideoURL =
         place && subPlace
@@ -382,5 +380,12 @@ export class FrameComponent implements OnInit {
               this.videoURLs[place]
             );
     }
+  }
+
+  onGoBackInit(){
+    this.setVideo(PlacesEnum.BIENVENIDO);
+    this.disableScan();
+    this.hasZoneActive = false;
+    this.description = this.searchZoneModelById(1).description;
   }
 }

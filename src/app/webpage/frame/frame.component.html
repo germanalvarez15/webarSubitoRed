@@ -1,5 +1,5 @@
 <div class="orientation-wrapper" id="inicio">
-  <nav class="navbar navbar-expand nav-header" style="height: '100px'">
+  <nav class="navbar navbar-expand nav-header" (click)="onGoBackInit()" style="height: '100px'">
     <img
       class="navbar-brand mb-0 sofia frameElement"
       src="/assets/img/iconosSofia/2.png"
@@ -8,14 +8,12 @@
       <span> El diario-guía de </span><br /><b>Villa Soriano</b>
     </p>
     <p
-      style="width: max-content; margin-left: '26%'"
+      style="width: max-content;position: absolute;height: inherit;margin: 30%;margin-top: 37%;"
       class="headerText frameElement"
     >
-      <span style="font-size: 16px">Abrí el</span><br />
-      <span style="font-family: 'Great Vibes', cursive; font-size: 27px"
+      <span style="font-family: 'Great Vibes', cursive;font-size: 2.5em;"
         >Diario de Sofía</span
-      ><br />
-      <span style="font-size: 16px">y disfrutá de un recorrido autoguiado</span>
+      >
     </p>
   </nav>
   <nav class="navbar navbar-expand nav-header-buttons">
@@ -42,7 +40,7 @@
           >{{ activeZone.name }}</a
         >
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="false">
         <a class="nav-link nav-header-buttons-text" href="#logos">INFO</a>
       </li>
     </ul>
