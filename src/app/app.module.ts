@@ -12,6 +12,7 @@ import { MapContainerComponent } from './webpage/frame/map-container/map-contain
 import { ImageTargetComponent } from './ar-module/scene/image-target/image-target.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { HttpClientModule } from '@angular/common/http';
+import { PopupComponent } from './shared/popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     CoinComponent,
     MapContainerComponent,
     ImageTargetComponent,
+    PopupComponent,
   ],
   imports: [
     BrowserModule,

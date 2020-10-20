@@ -11,6 +11,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, take } from 'rxjs/operators';
 import { Observable, ObservableInput, of } from 'rxjs';
+import { FooterTypes } from 'src/app/shared/popup/footer/footerTypes.enum';
+import { FooterModel } from 'src/app/shared/popup/footer/footerType.model';
+import { FooterParagraphModel } from 'src/app/shared/popup/footer/footerParagraph.model';
+import { PopupService } from 'src/app/shared/popup/popup.service';
 
 @Component({
   selector: 'app-frame',
@@ -164,12 +168,69 @@ export class FrameComponent implements OnInit {
   activeZone: ZoneModel;
   //Load locally by default
   isLoadedLocally: boolean = true;
+
+  footerPopupTypes: any = FooterTypes;
+  isPopupOpened: boolean = false;
+  footerPopupTexts: any = {
+    [FooterTypes.LEGALES] : new FooterModel(
+      FooterTypes.LEGALES,
+      'Información Legal',
+      [
+        new FooterParagraphModel(
+          'Identificación de la Empresa',
+          ['Súbito Red Desarrollos Srl , con RUT número 217076220017 y domicilio fiscal en la ciudad de Montevideo, en la calle Porongos 2877. Puede contactarnos a través del correo electrónico jgarin.subito@gmail.com<br>']
+        ),
+        new FooterParagraphModel(
+          'Propiedad Intelectual',
+          [
+            'La propiedad intelectual e industrial, desarrollo de tecnología, software de autor, gráficos, imágenes, videos, logotipos, e iconos visibles en el Sitio Web, como en la instalación física son de propiedad exclusiva de Súbito Red. Desarrollos Srl y queda prohibida su utilización con fines comerciales y/o su posterior distribución sin que se haya obtenido previamente la autorización necesaria para tales usos. Queda asimismo prohibido su empleo para ilustrar actividades, productos o eventos de otras compañías sin la previa autorización expresa y por escrito de Súbito Red. Desarrollos Srl.<br>',
+            'El software licenciado y/o desarrollado por y para Súbito Red. Desarrollos Srl, incluyendo el código fuente y los contenidos elaborados por su titular y/o sus colaboradores, están protegidos por las normativas nacionales e internacionales vigentes en materia de derechos de propiedad intelectual e industrial, de forma que el Usuario se encuentra facultado únicamente para la navegación a través de las páginas del sitio Web para su visualización como uso privado.<br>'
+          ]
+        ),
+        new FooterParagraphModel(
+          'Uso',
+          [
+            'Los Usuarios se comprometen a utilizar los servicios ofrecidos por Súbito Red. Desarrollos Srl y contenidos del Sitio Web de conformidad con lo establecido en la Ley y en el presente Aviso Legal, respondiendo frente a Súbito Red. Desarrollos Srl o frente a terceros, de los daños y perjuicios que pudieran causar como consecuencia del incumplimiento de dichas obligaciones, y de las actuaciones llevadas a cabo que sean de carácter ilícito, negligente, fraudulento, o que contravengan el principio de buena fe, los usos generalmente aceptados o el orden público.<br>',
+            'Queda expresamente prohibido el uso del Sitio Web con fines ilícitos, lesivos de los bienes, los intereses o la reputación de Súbito Red. Desarrollos Srl o de terceros, o que de cualquier otra forma dañen, sobrecarguen o inutilicen las redes, servidores y demás equipos informáticos (hardware) o productos y aplicaciones informáticas (software) de Súbito Red. Desarrollos Srl o de terceros.<br>',
+          ]
+        ),
+        new FooterParagraphModel(
+          'Política de confidencialidad',
+          [
+            'No recopilamos ninguna información u otros datos personales que lo identifiquen a usted personalmente.<br>',
+          ]
+        ),
+      ]
+    ),
+    [FooterTypes.CREDITOS] : new FooterModel(
+      FooterTypes.CREDITOS,
+      'Proyecto desarrollado en el marco del Corredor Turístico Pájaros Pintados. Financiado por la Intendencia de Soriano y el Banco Interamericano de Desarrollo.',
+      [
+        new FooterParagraphModel(
+          'INTENDENCIA DE SORIANO',
+          ['Intendente: <b>Agustín Bascou</b><br> Dirección de turismo: <b>José Luis Perazza</b><br> Coordinación de contenidos: <b>Elena Guzzi</b><br>']
+        ),
+        new FooterParagraphModel(
+          'MINTUR',
+          ['Coordinación de contenido: <b>Nadia Coiana</b><br> Dirección de turismo: <b>José Luis Perazza</b><br> Coordinación de contenidos: <b>Elena Guzzi</b><br>']
+
+        ),
+        new FooterParagraphModel(
+          'PRODUCCIÓN',
+          ['Director de proyecto: <b>jGarin</b><br> Guión y documentación: <b>Camila Rodríguez Caram</b><br> Realización multimedia: <b>Sebastián Pérez</b><br> Desarrollo técnico: <b>Alberto Eberhardt y Diego Strasser</b><br> Programación Web/AR: <b>Germán Álvarez</b><br> Actriz: <b>María Eugenia Machado</b><br> Cámaras adicionales: <b>Soledad Sienra y David Nogal</b><br>  Asesoría actoral: <b>Yamandú Fumero</b><br> Asistencia producción: <b>Gabriela Muzio</b><br> Instalación técnica: <b>Alberto Eberhardt y Enrique Araújo</b><br> Producción general: <b>Súbito Red.Desarrollos SRL</b><br>']
+        )
+      ]
+    ),
+  }
+
+
   constructor(
     private mapService: MapService,
     private router: Router,
     private activedRoute: ActivatedRoute,
     private _sanitizer: DomSanitizer,
-    private http: HttpClient
+    private http: HttpClient,
+    private popupService: PopupService
   ) {
     let randomNumber: number = Math.floor(
       Math.random() * this.sofiaImageRoutes.length
@@ -181,11 +242,14 @@ export class FrameComponent implements OnInit {
       randomNumber == 1 || randomNumber == 3 || randomNumber == 5;
   }
 
+
   ngOnInit() {
     this.zones = this.mapService.getZones();
     //Set video bienvenida
     this.setVideo(PlacesEnum.BIENVENIDO);
-
+    this.popupService.onIsPopupOpened.subscribe((status:boolean) => {
+      this.isPopupOpened = status;
+    })
     this.activedRoute.queryParams.subscribe((params) => {
       if (!this.zoneClicked) {
         if (Object.keys(params).length > 0 && params['place']) {
@@ -387,5 +451,10 @@ export class FrameComponent implements OnInit {
     this.disableScan();
     this.hasZoneActive = false;
     this.description = this.searchZoneModelById(1).description;
+  }
+
+  onOpenPopup(footerType: FooterTypes){
+    this.isPopupOpened = true;
+    this.popupService.onOpenFooterPopup.emit(this.footerPopupTexts[footerType]);
   }
 }
