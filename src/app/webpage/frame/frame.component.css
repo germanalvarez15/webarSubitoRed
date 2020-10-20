@@ -85,6 +85,9 @@ a:active {
 .legal-a-buttons {
   margin-left: 10%;
 }
+.a {
+  color: #007bff;
+}
 /****************** LANDSCAPE *************************/
 @media screen and (orientation: landscape) {
   .sofia {
