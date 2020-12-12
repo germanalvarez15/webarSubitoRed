@@ -9,6 +9,11 @@
       ? zone.landscapeValues.leftValue + '%'
       : zone.portraitValues.leftValue + '%'
   "
+  [style.right]="
+    onLandscape
+    ? zone.landscapeValues.rightValue + '%'
+    : zone.portraitValues.rightValue + '%'
+  "
   class="waypoint"
 >
   <a (click)="changeStatus()">

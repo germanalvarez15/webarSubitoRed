@@ -168,7 +168,8 @@ export class FrameComponent implements OnInit {
   activeZone: ZoneModel;
   //Load locally by default
   isLoadedLocally: boolean = true;
-
+  activeZoneID: PlacesEnum;
+  activeSubZoneID: PlacesEnum;
   footerPopupTypes: any = FooterTypes;
   isPopupOpened: boolean = false;
   footerPopupTexts: any = {
@@ -246,13 +247,15 @@ export class FrameComponent implements OnInit {
   ngOnInit() {
     this.zones = this.mapService.getZones();
     //Set video bienvenida
-    this.setVideo(PlacesEnum.BIENVENIDO);
+    //this.setVideo(PlacesEnum.BIENVENIDO);
     this.popupService.onIsPopupOpened.subscribe((status:boolean) => {
       this.isPopupOpened = status;
     })
     this.activedRoute.queryParams.subscribe((params) => {
       if (!this.zoneClicked) {
         if (Object.keys(params).length > 0 && params['place']) {
+          console.log("BY URL");
+
           this.QPloaded = true;
           this.hasZoneActive = true;
           this.enableScanningMode = true;
@@ -260,6 +263,8 @@ export class FrameComponent implements OnInit {
           let zoneID: number = +qpSplitted[0];
           let subZoneID: number = +qpSplitted[1];
           this.activeZone = this.searchZoneModelById(zoneID);
+          this.activeZoneID = zoneID;
+          this.activeSubZoneID = subZoneID;
 
           this.addSpacesOnNewDescription(this.activeZone.description);
           this.setVideo(zoneID, subZoneID);
@@ -423,12 +428,20 @@ export class FrameComponent implements OnInit {
   onVideoError(event) {
     this.isLoadedLocally = false;
     //Set video bienvenida
-    this.setVideo(PlacesEnum.BIENVENIDO);
+    if(this.activeZoneID && this.activeSubZoneID){
+      this.setVideo(this.activeZoneID, this.activeSubZoneID);
+    }else{
+      this.setVideo(PlacesEnum.BIENVENIDO);
+    }
 
     console.log('No se pudo cargar video localmente');
   }
 
   setVideo(place: PlacesEnum, subPlace?: PlacesEnum) {
+    console.log(place);
+    console.log(subPlace);
+    console.log(this.isLoadedLocally);
+
     if (this.isLoadedLocally) {
       this.activeVideoURL =
         place && subPlace
