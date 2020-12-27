@@ -3,7 +3,7 @@
 }
 .waypoint {
   position: absolute;
-  width: 40%;
+  width: 48%;
 }
 @media screen and (orientation: portrait) {
   .waypoint {
@@ -14,7 +14,7 @@
   }
   .marker-text {
     width: fit-content;
-    font-size: 55%;
+    font-size: 80%;
   }
 }
 @media screen and (orientation: landscape) {

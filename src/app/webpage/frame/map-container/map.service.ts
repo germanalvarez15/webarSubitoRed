@@ -34,9 +34,9 @@ export class MapService {
         2: '/assets/trackingImages/' + PlacesEnum.ESTACION_FLUVIAL + '/' + '2',
         3: '/assets/trackingImages/' + PlacesEnum.ESTACION_FLUVIAL + '/' + '3',
       },
-      new WaypointValuesPortrait(9, 66, 30, 62),
+      new WaypointValuesPortrait(15, 23, 30, 62),
       new WaypointValuesLandscape(7, 58, 37, 58),
-      true,
+      false,
       true
     ),
     new ZoneModel(
@@ -61,7 +61,7 @@ export class MapService {
         2: '/assets/trackingImages/' + PlacesEnum.MUELLE + '/' + '2',
         3: '/assets/trackingImages/' + PlacesEnum.MUELLE + '/' + '3',
       },
-      new WaypointValuesPortrait(6, 69, 30, 62),
+      new WaypointValuesPortrait(6, 70, 30, 62),
       new WaypointValuesLandscape(3, 59, 37, 58),
       true,
       true
@@ -85,9 +85,9 @@ export class MapService {
         1: '/assets/trackingImages/' + PlacesEnum.TIMBO + '/' + '1',
         2: '/assets/trackingImages/' + PlacesEnum.TIMBO + '/' + '2',
       },
-      new WaypointValuesPortrait(60, null, 60, 49, null,70),
+      new WaypointValuesPortrait(null, 9, 60, 49, 7, null),
       new WaypointValuesLandscape(60, 36.5, 60, 12),
-      false,
+      true,
       true
     ),
     new ZoneModel(
@@ -112,7 +112,7 @@ export class MapService {
         2: '/assets/trackingImages/' + PlacesEnum.MAESO + '/' + '2',
         3: '/assets/trackingImages/' + PlacesEnum.MAESO + '/' + '3',
       },
-      new WaypointValuesPortrait(19, 62, 30, 62),
+      new WaypointValuesPortrait(31, 61, 30, 62),
       new WaypointValuesLandscape(18, 57, 37, 58),
       true,
       true
@@ -144,7 +144,7 @@ export class MapService {
         5: '/assets/trackingImages/' + PlacesEnum.MARFETAN + '/' + '5',
         6: '/assets/trackingImages/' + PlacesEnum.MARFETAN + '/' + '6',
       },
-      new WaypointValuesPortrait(25.5, 50, 30, 62),
+      new WaypointValuesPortrait(41, 45, 30, 62),
       new WaypointValuesLandscape(24, 53, 37, 58),
       true,
       true
@@ -165,14 +165,14 @@ export class MapService {
       {
         1: '/assets/trackingImages/' + PlacesEnum.MASCARAS + '/' + '1',
       },
-      new WaypointValuesPortrait(24, 16, 37, 60),
+      new WaypointValuesPortrait(38, 1, 37, 60),
       new WaypointValuesLandscape(22, 12, 37, 58),
       false,
       true
     ),
     new ZoneModel(
       PlacesEnum.GALARZA,
-      'Casa del General Galarza',
+      'Casa Galarza',
       'Resulta fácil imaginar la presencia que, en su época, debió haber tenido la casa del General Galarza. Aunque hoy esté en ruinas y sostenida para evitar su derrumbe, uno puede dejarse llevar por los recovecos que la constituyen e imaginar el momento en el que cada una de sus salas se veían firmes, inquebrantables y elegantes. De pronto, los espacios vacíos de los huecos de las paredes parecen llenarse y hasta se puede escuchar la melodía que, desde su interior, suena con más fuerza.\nDirección: Cabildo y Hugo Renata.',
       'url(/assets/img/places/galarza.png)',
       {
@@ -184,7 +184,7 @@ export class MapService {
       {
         1: '/assets/trackingImages/' + PlacesEnum.GALARZA + '/' + '1',
       },
-      new WaypointValuesPortrait(38.5, 3, 37, 60),
+      new WaypointValuesPortrait(46, null, 30, 62, null, 61),
       new WaypointValuesLandscape(36, 6, 37, 58),
       false,
       false
@@ -208,7 +208,7 @@ export class MapService {
         1: '/assets/trackingImages/' + PlacesEnum.SOLAR + '/' + '1',
         2: '/assets/trackingImages/' + PlacesEnum.SOLAR + '/' + '2',
       },
-      new WaypointValuesPortrait(29, 61, 30, 62),
+      new WaypointValuesPortrait(47, 60, 30, 62),
       new WaypointValuesLandscape(28, 56, 37, 58),
       true,
       true
@@ -244,7 +244,7 @@ export class MapService {
         5: '/assets/trackingImages/' + PlacesEnum.CAPILLA + '/' + '5',
         6: '/assets/trackingImages/' + PlacesEnum.CAPILLA + '/' + '6',
       },
-      new WaypointValuesPortrait(20.5, 19, 30, 62),
+      new WaypointValuesPortrait(33.5, 9, 30, 62),
       new WaypointValuesLandscape(19, 15, 37, 58),
       false,
       true
@@ -265,7 +265,7 @@ export class MapService {
   ];
 
   zoneTypeSelected: PlacesEnum;
-  constructor() {}
+  constructor() { }
 
   onNewZoneSelected(zone: ZoneModel) {
     this.onZoneSelected.emit(zone);

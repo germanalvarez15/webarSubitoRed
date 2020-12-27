@@ -14,9 +14,15 @@
     ? zone.landscapeValues.rightValue + '%'
     : zone.portraitValues.rightValue + '%'
   "
+  [style.bottom]="
+    onLandscape
+    ? zone.landscapeValues.bottomValue + '%'
+    : zone.portraitValues.bottomValue + '%'
+  "
   class="waypoint"
+  [style.display]="zone.name != 'Bienvenido' ? 'block' : 'none'"
 >
-  <a (click)="changeStatus()">
+  <a style="position: absolute;" (click)="changeStatus()">
     <img
       *ngIf="!isActive"
       src="assets/img/map/redMapPoint.png"
@@ -29,12 +35,12 @@
       src="assets/img/map/blueMapPoint.png"
       [style.float]="zone.textAlignRight ? '' : 'right'"
     />
-
-    <b
-      class="marker-text"
-      [style.color]="isActive ? '#1d00b1' : '#c20000'"
-      [style.float]="!zone.textAlignRight ? 'right' : 'left'"
-      >{{ zone.name.toUpperCase() }}</b
-    >
   </a>
+  <b
+  class="marker-text"
+  [style.color]="isActive ? '#1d00b1' : '#c20000'"
+  [style.float]="!zone.textAlignRight ? 'right' : 'left'"
+  [style.margin-left]="zone.textAlignRight ? '15%' : null"
+  [style.margin-right]="!zone.textAlignRight ? '15%' : null"
+  >{{ zone.name.toUpperCase() }}</b>
 </div>

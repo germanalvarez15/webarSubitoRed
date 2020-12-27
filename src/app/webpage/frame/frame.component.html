@@ -125,12 +125,29 @@
       background-position-x: center;
       background-position-y: 27px;
       background-size: cover;
-      background-image: url(/assets/img/map/mapa.png);
+      background-image: url(/assets/img/map/mapa2.jpg);
       background-repeat: no-repeat;
     "
   >
     <div class="map-container">
       <div class="marker-container">
+        <div style="
+          position: absolute;
+          left: 71%;
+          top: 16%;"
+        >
+          <a style="position: absolute;float: left;">
+            <img
+              class="marker-icon"
+              src="assets/img/map/infoIcon.png"
+              style="float: left;width: 77%;"
+            />
+          </a>
+          <b
+          class="marker-text"
+          style="float: left;color: black;font-size: 75%;margin-left: 26%;"
+          >Información T.45604815</b>
+        </div>
         <ng-container *ngFor="let zone of zones">
           <app-map-container [zone]="zone"></app-map-container>
         </ng-container>
