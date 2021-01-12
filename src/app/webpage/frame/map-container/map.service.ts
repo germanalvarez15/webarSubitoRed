@@ -112,7 +112,7 @@ export class MapService {
         2: '/assets/trackingImages/' + PlacesEnum.MAESO + '/' + '2',
         3: '/assets/trackingImages/' + PlacesEnum.MAESO + '/' + '3',
       },
-      new WaypointValuesPortrait(31, 61, 30, 62),
+      new WaypointValuesPortrait(30, 59.5, 30, 62),
       new WaypointValuesLandscape(18, 57, 37, 58),
       true,
       true
@@ -244,7 +244,7 @@ export class MapService {
         5: '/assets/trackingImages/' + PlacesEnum.CAPILLA + '/' + '5',
         6: '/assets/trackingImages/' + PlacesEnum.CAPILLA + '/' + '6',
       },
-      new WaypointValuesPortrait(33.5, 9, 30, 62),
+      new WaypointValuesPortrait(33.5, 7, 30, 62),
       new WaypointValuesLandscape(19, 15, 37, 58),
       false,
       true
