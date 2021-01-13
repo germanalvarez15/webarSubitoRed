@@ -14,7 +14,7 @@
   }
   .marker-text {
     width: fit-content;
-    font-size: 80%;
+    font-size: x-small;
   }
 }
 @media screen and (orientation: landscape) {
