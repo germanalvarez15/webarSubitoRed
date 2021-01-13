@@ -162,7 +162,7 @@ export class FrameComponent implements OnInit {
       2: '/assets/videos/' + PlacesEnum.SOLAR + '/' + '2.mp4',
     },
   };
-  activeVideoURL: any;
+  activeVideoURL: any = this.videoURLsLocal[PlacesEnum.BIENVENIDO]; //Default
   description: string =
     '¡Bienvenido! Durante este recorrido auto-guiado vas a pasear por la historia de Villa Soriano. Será un viaje sin tiempo, que te permitirá pasar de un siglo a otro con tan solo unas cuadras de diferencia. \n Podrás adentrarte en los recovecos de una de las primeras poblaciones del Uruguay y disfrutar de un atardecer colonial en un muelle renovado. \n Notarás que se mezclará la historia nacional con la de sus pobladores y que eso lo convertirá en un paseo único. Ejemplo de esto podrá ser la historia de Don Paco: descendiente de uno de los Treinta y Tres Orientales e hijo de un artista plástico cuya casa está repleta de máscaras expresivas y coloridas. \n Uno de los destinos estará contextualizado en el pasado revolucionario, será el predio donde vivían José Gervasio Artigas e Isabel Sánchez. Comenzarás la historia conociendo a aquel Artigas joven y padre de familia, y llegarás hasta el día de hoy, donde conocerás a la tátara nieta de ambos. \n Podrás rememorar una costumbre religiosa y conocer hasta el más mínimo detalle de una capilla singular. Escuchar la historia de la vida de los vecinos a través de un Timbó solemne, o conocer la personalidad de una artista anticipada para la época. Adentrarte en una cocina antigua, escuchar las leyendas del pueblo, sentir el sonido de las aves, reconstruir el pasado y volver al presente, caminar, investigar, charlar y disfrutar.';
   activeZone: ZoneModel;
@@ -173,7 +173,7 @@ export class FrameComponent implements OnInit {
   footerPopupTypes: any = FooterTypes;
   isPopupOpened: boolean = false;
   footerPopupTexts: any = {
-    [FooterTypes.LEGALES] : new FooterModel(
+    [FooterTypes.LEGALES]: new FooterModel(
       FooterTypes.LEGALES,
       'Información Legal',
       [
@@ -203,7 +203,7 @@ export class FrameComponent implements OnInit {
         ),
       ]
     ),
-    [FooterTypes.CREDITOS] : new FooterModel(
+    [FooterTypes.CREDITOS]: new FooterModel(
       FooterTypes.CREDITOS,
       'Proyecto desarrollado en el marco del Corredor Turístico Pájaros Pintados. Financiado por la Intendencia de Soriano y el Banco Interamericano de Desarrollo.',
       [
@@ -248,7 +248,7 @@ export class FrameComponent implements OnInit {
     this.zones = this.mapService.getZones();
     //Set video bienvenida
     //this.setVideo(PlacesEnum.BIENVENIDO);
-    this.popupService.onIsPopupOpened.subscribe((status:boolean) => {
+    this.popupService.onIsPopupOpened.subscribe((status: boolean) => {
       this.isPopupOpened = status;
     })
     this.activedRoute.queryParams.subscribe((params) => {
@@ -428,9 +428,9 @@ export class FrameComponent implements OnInit {
   onVideoError(event) {
     this.isLoadedLocally = false;
     //Set video bienvenida
-    if(this.activeZoneID && this.activeSubZoneID){
+    if (this.activeZoneID && this.activeSubZoneID) {
       this.setVideo(this.activeZoneID, this.activeSubZoneID);
-    }else{
+    } else {
       this.setVideo(PlacesEnum.BIENVENIDO);
     }
 
@@ -451,22 +451,22 @@ export class FrameComponent implements OnInit {
       this.activeVideoURL =
         place && subPlace
           ? this._sanitizer.bypassSecurityTrustResourceUrl(
-              this.videoURLs[place][subPlace]
-            )
+            this.videoURLs[place][subPlace]
+          )
           : this._sanitizer.bypassSecurityTrustResourceUrl(
-              this.videoURLs[place]
-            );
+            this.videoURLs[place]
+          );
     }
   }
 
-  onGoBackInit(){
+  onGoBackInit() {
     this.setVideo(PlacesEnum.BIENVENIDO);
     this.disableScan();
     this.hasZoneActive = false;
     this.description = this.searchZoneModelById(1).description;
   }
 
-  onOpenPopup(footerType: FooterTypes){
+  onOpenPopup(footerType: FooterTypes) {
     this.isPopupOpened = true;
     this.popupService.onOpenFooterPopup.emit(this.footerPopupTexts[footerType]);
   }
