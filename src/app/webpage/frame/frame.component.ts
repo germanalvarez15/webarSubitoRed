@@ -209,11 +209,11 @@ export class FrameComponent implements OnInit {
       [
         new FooterParagraphModel(
           'INTENDENCIA DE SORIANO',
-          ['Intendente: <b>Agustín Bascou</b><br> Dirección de turismo: <b>José Luis Perazza</b><br> Coordinación de contenidos: <b>Elena Guzzi</b><br>']
+          ['Intendente: <b>Agustín Bascou</b><br> Dirección de turismo: <b>José Luis Perazza</b><br> Coordinación de contenidos: <b>Elena Laguzzi</b><br>']
         ),
         new FooterParagraphModel(
           'MINTUR',
-          ['Coordinación de contenido: <b>Nadia Coiana</b><br> Dirección de turismo: <b>José Luis Perazza</b><br> Coordinación de contenidos: <b>Elena Guzzi</b><br>']
+          ['Coordinación de contenido: <b>Nadia Coiana</b><br>']
 
         ),
         new FooterParagraphModel(
